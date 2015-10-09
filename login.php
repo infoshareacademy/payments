@@ -18,7 +18,7 @@ $error = 'Podaj login i haslo';
 }
 else {
 if ($_SESSION['user_login'] == ADMIN_LOGIN && $_SESSION['user_pass']== ADMIN_PASS) {
-    header ("location: index.html");
+    header ("location: index.php");
     $error = '';
 }
 else {
