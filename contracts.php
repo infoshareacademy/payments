@@ -17,7 +17,6 @@ $conn = mysqli_connect($servername, $username, $password, $username);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully"."<br>";
 
 $sql = 'SELECT id, Signature FROM contract';
 
@@ -31,12 +30,7 @@ echo mysqli_error($conn);
         <thead>
         <tr>
             <th>ID</th>
-            <th>Numer faktury</th>
-            <th>Sygnatura</th>
-            <th>Kwota</th>
-            <th>Data wystawienia</th>
-            <th>Data płatności</th>
-            <th>Data opłacenia</th>
+            <th>Numer umowy</th>
         </tr>
         </thead>
         <tbody>
@@ -46,7 +40,11 @@ echo mysqli_error($conn);
             if ($contracts->num_rows > 0) {
                 // output data of each row
                 while($contract = $contracts->fetch_assoc()) {
-                    echo "<td>" . $contract["id"]."</td>" .  "<td>". $contract["Signature"] ."</td>" . "<br>";
+                    echo
+                        "<tr>" .
+                        "<td>" . $contract["id"]."</td>" .
+                        "<td>" . $contract["Signature"] ."</td>" .
+                        "</tr>";
                 }
             } else {
                     echo "0 results";
