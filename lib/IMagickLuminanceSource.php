@@ -54,7 +54,7 @@ final class IMagickLuminanceSource extends LuminanceSource {
         $this->image = $image;
 
 
-// In order to measure pure decoding speed, we convert the entire image to a greyscale array
+// In order to measure pure decoding speed, we convert the entire image imto a greyscale array
 // up front, which is the same as the Y channel of the YUVLuminanceSource in the real app.
         $this->luminances = array();
 
