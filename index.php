@@ -58,7 +58,7 @@
 
               <h2>Twoje faktury:</h2>
           <?php
-            include_once('contracts.php');
+            include_once('invoices.php');
           ?>
 
 
