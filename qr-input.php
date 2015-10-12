@@ -5,10 +5,19 @@
  * Date: 08.10.15
  * Time: 16:18
  */
-include_once('./lib/QrReader.php');
-$qrcode = new QrReader('/home/jakubmatyka/Desktop/Screenshot from 2015-10-09 15:30:13.png');
+require('lib/QrReader.php');
+$qrcode = new QrReader('QR/invoice_qr.png');
 $text = $qrcode->text();
 
-var_dump($text);
+//var_dump($text);
+
+list($nip,$language,$accountNumber,$amount,$operator,$invoiceNumber) = explode('|', $text.'<br/>');
+
+echo $nip.'<br/>';
+echo $language.'<br/>';
+echo $accountNumber.'<br/>';
+echo $amount.'<br/>';
+echo $operator.'<br/>';
+echo $invoiceNumber.'<br/>';
 
 ?>
