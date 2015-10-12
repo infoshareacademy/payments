@@ -17,7 +17,6 @@ $conn = mysqli_connect($servername, $username, $password, $username);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully"."<br>";
 
 $sql = 'SELECT id, Signature FROM contract';
 
@@ -25,12 +24,35 @@ $contracts = $conn->query($sql);
 
 echo mysqli_error($conn);
 
-if ($contracts->num_rows > 0) {
-    // output data of each row
-    while($contract = $contracts->fetch_assoc()) {
-        echo "id: " . $contract["id"]. " - Signature: " . $contract["Signature"] . "<br>";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+?>
+    <table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Numer umowy</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <?php
+
+            if ($contracts->num_rows > 0) {
+                // output data of each row
+                while($contract = $contracts->fetch_assoc()) {
+                    echo
+                        "<tr>" .
+                        "<td>" . $contract["id"]."</td>" .
+                        "<td>" . $contract["Signature"] ."</td>" .
+                        "</tr>";
+                }
+            } else {
+                    echo "0 results";
+            }
+            $conn->close();
+            ?>
+        </tr>
+        </tbody>
+    </table>
+
+
