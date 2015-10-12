@@ -19,6 +19,11 @@ if (!$conn) {
 }
 echo "Podłączono do bazy danych"."<br>";
 
+if (@$_GET['delete']) {
+     $conn->query('delete from invoices where id = '.(int)$_GET['delete']);
+}
+
+
 $sql = 'SELECT id, Signature, Amount, Issue_date, Maturity_date, Payment_date FROM invoices';
 
 $contracts = $conn->query($sql);
@@ -51,7 +56,8 @@ echo mysqli_error($conn);
                          "<td>". $contract["Amount"] ."</td>" .
                          "<td>". $contract["Issue_date"] ."</td>" .
                          "<td>". $contract["Maturity_date"] ."</td>" .
-                         "<td>". $contract["Payment_date"] ."</td>"
+                         "<td>". $contract["Payment_date"] ."</td>".
+                         "<td><a href='?delete=". $contract["id"] ."'>usun</a></td>"
                          . "</tr>";
                 }
             } else {
