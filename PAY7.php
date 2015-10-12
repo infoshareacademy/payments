@@ -5,9 +5,8 @@
  * Date: 09.10.15
  * Time: 12:22
  */
-include 'config.php';
 
-
+define('ContractsUploadDirectory', '/home/tomek/workspace/contracts_files/');
 
 
 
