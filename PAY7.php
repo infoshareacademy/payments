@@ -6,6 +6,8 @@
  * Time: 12:22
  */
 include 'config.php';
+include 'session_check_header.php';
+
 
 
 
