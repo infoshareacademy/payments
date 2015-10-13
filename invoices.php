@@ -24,7 +24,7 @@ if (@$_GET['delete']) {
 }
 
 
-$sql = 'SELECT id, Signature, Amount, Issue_date, Maturity_date, Payment_date FROM invoices';
+$sql = 'SELECT id, signature, amount, issue_date, maturity_date, payment_date FROM invoices';
 
 $contracts = $conn->query($sql);
 
@@ -52,11 +52,11 @@ echo mysqli_error($conn);
                 while($contract = $contracts->fetch_assoc()) {
                     echo "<tr>" .
                          "<td>" . $contract["id"]."</td>" .
-                         "<td>". $contract["Signature"] ."</td>" .
-                         "<td>". $contract["Amount"] ."</td>" .
-                         "<td>". $contract["Issue_date"] ."</td>" .
-                         "<td>". $contract["Maturity_date"] ."</td>" .
-                         "<td>". $contract["Payment_date"] ."</td>".
+                         "<td>". $contract["signature"] ."</td>" .
+                         "<td>". $contract["amount"] ."</td>" .
+                         "<td>". $contract["issue_date"] ."</td>" .
+                         "<td>". $contract["maturity_date"] ."</td>" .
+                         "<td>". $contract["payment_date"] ."</td>".
                          "<td><a href='?delete=". $contract["id"] ."'>usun</a></td>"
                          . "</tr>";
                 }

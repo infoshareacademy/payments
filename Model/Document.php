@@ -6,10 +6,9 @@
  * Time: 15:38
  */
 
-namespace piedPiperPaymentModel;
 
 
-class document
+class Document
 {
 
     protected $number;
@@ -35,8 +34,24 @@ class document
         return $this->$param_name;
     }
 
-    public function __contruct() {
-        self::$numberOfDocuments++;
+    public function __construct() {
+    }
+    
+    public function importFromArray($formData) {
+        foreach ($formData as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
+    public function persist() {
+        
+    }
+
+    public function serializeToHTML() {
+        return
+        "<td>". $this->number ."</td>" .
+            "<td>". $this->amount ."</td>" .
+            "<td>". $this->issueDate ."</td>";
     }
 
 }

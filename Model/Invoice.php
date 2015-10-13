@@ -6,18 +6,18 @@
  * Time: 15:39
  */
 
-namespace piedPiperPaymentModel;
 
+require_once 'Document.php';
 
-class invoice extends document {
+class Invoice extends Document {
     protected $paymentDate;
     protected $maturityDate;
     protected $item;
-    protected $status = document::STATUS_ISSUE;
+    protected $status = Document::STATUS_ISSUE;
 
     public function pay() {
         $this->paymentDate = date('Y-m-d');
-        $this->status = document::STATUS_PAID;
+        $this->status = Document::STATUS_PAID;
     }
 
     public function __set($paramName, $paramValue) {
@@ -26,6 +26,12 @@ class invoice extends document {
 
     public function __get($param_name) {
         return $this->$param_name;
+    }
+    public function serializeToHTML() {
+        $HTMLFromParent = parent::serializeToHTML();
+        $HTMLFromThis = "<td>". $this->maturityDate ."</td>" .
+        "<td>". $this->paymentDate ."</td>";
+        return $HTMLFromParent . $HTMLFromThis;
     }
 
 
