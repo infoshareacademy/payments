@@ -59,39 +59,13 @@
 
 
               <h2>Twoje faktury:</h2>
-              <table class="table table-hover">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Numer faktury</th>
-                  <th>Sygnatura</th>
-                  <th>Kwota</th>
-                  <th>Data wystawienia</th>
-                  <th>Data płatności</th>
-                  <th>Data opłacenia</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>John</td>
-                  <td>Doe</td>
-                  <td>john@example.com</td>
-                </tr>
-                <tr>
-                  <td>Mary</td>
-                  <td>Moe</td>
-                  <td>mary@example.com</td>
-                </tr>
-                <tr>
-                  <td>July</td>
-                  <td>Dooley</td>
-                  <td>july@example.com</td>
-                </tr>
-                </tbody>
-              </table>
+          <?php
+            include_once('invoices.php');
+          ?>
 
           </div>
 
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
