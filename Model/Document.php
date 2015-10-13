@@ -44,7 +44,15 @@ class Document
     }
 
     public function persist() {
-        
+        try {
+            $pdo = new PDO('mysql:dbname=infoshareaca_7; host = test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+
+        $newInvoice = $pdo->prepare('INSERT INTO invoices (Signature, Amount, Issue_date, Maturity_date, Payment_date)
+VALUES
+        ');
+        } catch (PDOException $i) {
+            echo 'Błąd połączenia:' . $i->getMessage();
+        }
     }
 
     public function serializeToHTML() {

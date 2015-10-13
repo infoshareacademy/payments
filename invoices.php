@@ -24,11 +24,21 @@ if (@$_GET['delete']) {
 }
 
 
-$sql = 'SELECT id, signature, amount, issue_date, maturity_date, payment_date FROM invoices';
+$sql = 'SELECT id, signature, amount, issue_date, maturity_date, payment_date FROM invoices ORDER BY Maturity_date';
 
 $contracts = $conn->query($sql);
 
 echo mysqli_error($conn);
+
+
+// Łapię dane z SQL i przerabiam na tablicę - próby
+
+//$contract = $contracts->fetch_array();
+//print_r($contract);
+//
+//exit;
+// koniec prób - usunąć exit do wykonania reszty
+
 
 ?>
 <table>
