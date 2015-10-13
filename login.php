@@ -61,6 +61,10 @@ if($error) {
 
         </div >
 
+        <footer>
+
+        </footer>
+
         </body >
         </html >
 ';
