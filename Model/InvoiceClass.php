@@ -36,7 +36,7 @@ class InvoiceClass
                 $this->payment_date = $result['payment_date'];
             }
             else {
-                throw new Exception('Brak takie ID='.$id);
+                throw new Exception('Brak takiego ID='.$id);
             }
         }
 
@@ -57,27 +57,27 @@ class InvoiceClass
                     $this->signature = htmlspecialchars($param_value);
                 break;
             case 'amount':
-//                if (!$param_value || !preg_match('/[0-9]{9,13}/', $param_value))
-//                    $this->phone = null;
-//                else
-                    $this->amount = $param_value;
+                if (!$param_value || !(int)$param_value)
+                    $this->amount = null;
+                else
+                    $this->amount = (int)$param_value;
                 break;
             case 'issue_date':
-//                if (!$param_value || !preg_match('/[0-9]{9,13}/', $param_value))
-//                    $this->phone = null;
-//                else
+                if (!$param_value || !preg_match('/^[\d]{2}\.[\d]{2}\.[\d]{4}$/sx', $param_value))
+                    $this->issue_date = null;
+                else
                 $this->issue_date = $param_value;
                 break;
             case 'maturity_date':
-//                if (!$param_value || !preg_match('/[0-9]{9,13}/', $param_value))
-//                    $this->phone = null;
-//                else
+                if (!$param_value || !preg_match('/^[\d]{2}\.[\d]{2}\.[\d]{4}$/sx', $param_value))
+                    $this->maturity_date = null;
+                else
                 $this->maturity_date = $param_value;
                 break;
             case 'payment_date':
-//                if (!$param_value || !preg_match('/[0-9]{9,13}/', $param_value))
-//                    $this->phone = null;
-//                else
+                if (!$param_value || !preg_match('/^[\d]{2}\.[\d]{2}\.[\d]{4}$/sx', $param_value))
+                    $this->payment_date = null;
+                else
                 $this->payment_date = $param_value;
                 break;
             default:
@@ -122,7 +122,6 @@ if (count($_POST)) {
         $error['payment_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
 
 
-
 //    if (!count($error)) {
 //        $status = $invoice->save();
 //        if ($status==InvoiceClass::SAVE_STATUS_OK)
@@ -135,3 +134,33 @@ if (count($_POST)) {
 //        }
 //    }
 }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz</title>
+
+</head>
+<body>
+
+<?php
+echo '<form action="?" method="post">';
+echo 'Numer faktury: <input name="signature" value="'.@$invoice->signature.'"/><br><div style="color:#f00;">'.@$error['signature'].'</div>';
+echo 'Kwota: <input name="amount" value="'.@$invoice->amount.'" /><br><div style="color:#f00;">'.@$error['amount'].'</div>';
+echo 'Data wystawienia: <input name="issue_date" type="date" value="'.@$invoice->issue_date.'" /><br><div style="color:#f00;">'.@$error['issue_date'].'</div>';
+echo 'Data płatności: <input name="maturity_date" type="date" value="'.@$invoice->maturity_date.'" /><br><div style="color:#f00;">'.@$error['maturity_date'].'</div>';
+echo 'Data opłacenia: <input name="payment_date" type="date" value="'.@$invoice->payment_date.'" /><br><div style="color:#f00;">'.@$error['payment_date'].'</div>';
+
+echo '<button id="btn_send">ZAPISZ</button>';
+echo '</form>';
+
+//echo '<pre>';
+//var_dump($invoice);
+
+?>
+
+</body>
+</html>
+

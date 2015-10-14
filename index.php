@@ -60,6 +60,7 @@ require_once 'Model/InvoiceClass.php';
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Payments</h1>
 
+<!--    Tworzenie tabeli z bazy danych -->
 
     <h2>Twoje faktury:</h2>
     <?php
@@ -81,7 +82,10 @@ require_once 'Model/InvoiceClass.php';
                 </div>
                 <div class="modal-body">
 
-                  <form>
+                    <!--Formularz do dodania nowej faktury -->
+
+
+                  <form action="?" method="post">
                     <div class="form-group">
                       <label>Numer faktury</label>
                       <input type="number" class="form-control" placeholder="Podaj numer faktury">
