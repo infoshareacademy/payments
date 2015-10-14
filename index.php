@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'session_check_header.php';
 ?>
 
@@ -116,3 +117,10 @@ include 'session_check_header.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<?php
+$content = ob_get_contents();
+$length = strlen($content);
+header('Content-Length: '.$length);
+echo $content;
+?>
