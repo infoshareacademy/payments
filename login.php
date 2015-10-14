@@ -26,47 +26,100 @@ $error = 'Bledny login lub haslo';
 }
 }
 
-
-
-
 if($error) {
 
-    echo '<!DOCTYPE html >
-        <html lang = "en" >
-        <head>
-        <meta charset = "utf-8" >
-        <meta http - equiv = "X-UA-Compatible" content = "IE=edge" >
-        <meta name = "viewport" content = "width=device-width, initial-scale=1" >
-        <title > Payments - Log in !</title >
-        <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
-        <link href = "login.css" rel = "stylesheet" >
-        </head>
+echo '
 
-        <body >
 
-        <div class="container" >
+<!DOCTYPE html>
+<html lang="en">
 
-            <form class="form-signin" method="post" >
-                <h2 class="form-signin-heading" > Please sign in </h2 >
+    <head>
 
-                <p style="color:red;">' .$error.'
-                <label for="inputEmail" class="sr-only" > Email address </label >
-                <input type name="inputEmail" = "email" id = "inputEmail" class="form-control" placeholder = "Email" required autofocus >
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Payments</title>
 
-                <label for="inputPassword" class="sr-only" > Password</label >
-                <input name="inputPassword" type = "password" id = "inputPassword" class="form-control" placeholder = "Password" required >
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/login_form_css/form-elements.css">
+        <link rel="stylesheet" href="css/login_form_css/style.css">
 
-                <button class="btn btn-lg btn-primary btn-block" type = "submit" > Sign in </button >
-            </form >
+    </head>
 
-        </div >
+    <body>
 
-        <footer>
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1 style="color: black"><strong>Payments</strong> Login to our site</h1>
+                            <div class="description">
 
-        </footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>'.$error.'</h3>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="inputEmail" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="inputPassword" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">Sign in!</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>...or login with:</h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-2" href="#">
+	                        		<i class="fa fa-facebook"></i> Facebook
+	                        	</a>
+	                        	<a class="btn btn-link-2" href="#">
+	                        		<i class="fa fa-twitter"></i> Twitter
+	                        	</a>
+	                        	<a class="btn btn-link-2" href="#">
+	                        		<i class="fa fa-google-plus"></i> Google Plus
+	                        	</a>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
 
-        </body >
-        </html >
+
+        <!-- Javascript -->
+        <script src="js/login_form_js/jquery-1.11.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/login_form_js/jquery.backstretch.min.js"></script>
+        <script src="js/login_form_js/scripts.js"></script>
+
+    </body>
+
+</html>
 ';
 }
-?>
