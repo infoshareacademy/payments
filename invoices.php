@@ -10,10 +10,10 @@ $servername = "test.payments.infoshareaca.nazwa.pl";
 $username = "infoshareaca_7";
 $password = "F0r3v3r!";
 
-// Create connection
+ //Create connection
 $conn = mysqli_connect($servername, $username, $password, $username);
 
-// Check connection
+ //Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -26,14 +26,14 @@ if (@$_GET['delete']) {
 
 $sql = 'SELECT id, signature, amount, issue_date, maturity_date, payment_date FROM invoices ORDER BY Maturity_date';
 
-$contracts = $conn->query($sql);
+$invoices = $conn->query($sql);
 
 echo mysqli_error($conn);
 
 
 // Łapię dane z SQL i przerabiam na tablicę - próby
 
-//$contract = $contracts->fetch_array();
+//$contract = $invoices->fetch_array();
 //print_r($contract);
 //
 //exit;
@@ -57,9 +57,9 @@ echo mysqli_error($conn);
         <tr>
             <?php
 
-            if ($contracts->num_rows > 0) {
+            if ($invoices->num_rows > 0) {
                 // output data of each row
-                while($contract = $contracts->fetch_assoc()) {
+                while($contract = $invoices->fetch_assoc()) {
                     echo "<tr>" .
                          "<td>" . $contract["id"]."</td>" .
                          "<td>". $contract["signature"] ."</td>" .
