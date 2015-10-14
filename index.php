@@ -1,5 +1,6 @@
 <?php
 include 'session_check_header.php';
+require_once 'Model/InvoiceClass.php';
 ?>
 
 <!DOCTYPE html>
@@ -82,24 +83,27 @@ include 'session_check_header.php';
 
                   <form>
                     <div class="form-group">
+                      <input type="hidden" name="id" value="'.@$c->id.'"/>
+                    </div>
+                    <div class="form-group">
                       <label>Numer faktury</label>
-                      <input type="number" class="form-control" placeholder="Podaj numer faktury">
+                      <input type="number" name='signature' class="form-control" placeholder="Podaj numer faktury">
                     </div>
                     <div class="form-group">
                       <label>Kwota</label>
-                      <input type="number" class="form-control"  placeholder="Podaj kwotę">
+                      <input type="number" name="amount" class="form-control"  placeholder="Podaj kwotę">
                     </div>
                     <div class="form-group">
                       <label>Data wystawienia</label>
-                      <input type="date" class="form-control"  placeholder="Podaj datę wystawienia faktury">
+                      <input type="date" name="issue_date" class="form-control"  placeholder="Podaj datę wystawienia faktury">
                     </div>
                     <div class="form-group">
                       <label>Data płatności</label>
-                      <input type="date" class="form-control"  placeholder="Podaj datę płatności dla tej faktury">
+                      <input type="date" name="maturity_date" class="form-control"  placeholder="Podaj datę płatności dla tej faktury">
                     </div>
                     <div class="form-group">
                       <label>Data opłacenia</label>
-                      <input type="date" class="form-control"  placeholder="Podaj do kiedy należy opłacić tą fakturę">
+                      <input type="date" name="payment_date" class="form-control"  placeholder="Podaj do kiedy należy opłacić tą fakturę">
                     </div>
                   </form>
 
