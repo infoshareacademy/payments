@@ -5,9 +5,11 @@
  * Date: 09.10.15
  * Time: 12:22
  */
-//include 'config.php';
-define ('ContractsUploadDirectory',
-'uploads');
+include 'config.php';
+include 'session_check_header.php';
+
+
+
 
 
 
@@ -36,7 +38,7 @@ function upload_file($file_field, $force_type='') {
         return 'BLAD';
 }
 
-print_r($_FILES) ;
+
 if (count($_FILES)) {
     $status = upload_file($_FILES['upload'], 'application/pdf');
 }
