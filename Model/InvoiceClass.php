@@ -9,7 +9,8 @@
 class InvoiceClass
 {
 
-//    protected $id;
+    protected $id;
+    protected $signature_id;
     protected $signature;
     protected $amount;
     protected $issue_date;
@@ -22,38 +23,48 @@ class InvoiceClass
     const SAVE_ERROR_DUPLICATE_SIG = 3;
 
 
-//    private $pdo;
-//
-//    public function __construct($id = null)
-//    {
-//        $this->pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
-//
-//        if ($id) {
-//            $stmt = $this->pdo->query("select * from invoices where id=".(int)$id);
-//            if ($stmt->rowCount()>0) {
-//                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-//                $this->id = $result['id'];
-//                $this->signature = $result['signature'];
-//                $this->amount = $result['amount'];
-//                $this->issue_date = $result['issue_date'];
-//                $this->maturity_date = $result['maturity_date'];
-//                $this->payment_date = $result['payment_date'];
-//            }
-//            else {
-//                throw new Exception('Brak takiego ID='.$id);
-//            }
-//        }
-//
-//    }
+    private $pdo;
+
+    public function __construct($id = null)
+    {
+        $this->pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+
+        if ($id) {
+            $stmt = $this->pdo->query("select * from invoices where id=".(int)$id);
+            if ($stmt->rowCount()>0) {
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                print_r($result);
+
+                $this->id = $result['id'];
+                $this->signature_id = $result['signature_id'];
+                $this->signature = $result['signature'];
+                $this->amount = $result['amount'];
+                $this->issue_date = $result['issue_date'];
+                $this->maturity_date = $result['maturity_date'];
+                $this->payment_date = $result['payment_date'];
+            }
+            else {
+                throw new Exception('Brak takiego ID='.$id);
+            }
+        }
+
+    }
 
     public function __set($param_name, $param_value) {
         switch ($param_name) {
-//            case 'id':
-//                if (!$param_value || !(int)$param_value)
-//                    $this->id = null;
-//                else
-//                    $this->id = (int)$param_value;
-//                break;
+            case 'id':
+                if (!$param_value || !(int)$param_value)
+                    $this->id = null;
+                else
+                    $this->id = (int)$param_value;
+                break;
+            case 'signature_id':
+                if (!$param_value || !(int)$param_value)
+                    $this->signature_id = null;
+                else
+                    $this->signature_id = (int)$param_value;
+                break;
             case 'signature':
                 if (!$param_value || strlen($param_value)>self::MAX_LENGHT)
                     $this->signature = null;
@@ -85,7 +96,7 @@ class InvoiceClass
                 $this->payment_date = $param_value;
                 break;
             default:
-                throw new Exception('Nie ma takiego atrybutu');
+                $this->$param_name = $param_value;
                 break;
         }
     }
@@ -96,34 +107,50 @@ class InvoiceClass
     }
 
     public function save_to_db() {
-        $pdo = new PDO ('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
-
- // sprawdzam połączenie do bazy danych
-
-        if (!$pdo) {
-            die("Connection failed: " . mysqli_connect_error());
+        if ($this->id) {
+            $stmt = $this->pdo->prepare("UPDATE invoices SET
+                id=:identity,
+                id_contract=:signature_id,
+                Signature=:signature,
+                Amount=:amount,
+                Issue_date=:issue_date,
+                Maturity_date=:maturity_date,
+                Payment_date=:payment_date
+                WHERE id=:id
+                ");
+            $upload = $stmt->execute(
+                array(
+                    ':identity' => $this->id,
+                    ':signature_id' => $this->signature_id,
+                    ':signature' => $this->signature,
+                    ':amount' => $this->amount,
+                    ':issue_date' => $this->issue_date,
+                    ':maturity_date' => $this->maturity_date,
+                    ':payment_date' => $this->payment_date
+                )
+            );
         }
-        echo "Podłączono do bazy danych"."<br>";
 
 // połączenie z bazą i sprawdzenie czy numer faktury nie dubluje się
+        else {
+            $stmt = $this->pdo->query("SELECT * FROM invoices WHERE Signature='" . $this->signature . "'");
+            if ($stmt->rowCount() > 0)
+                return self::SAVE_ERROR_DUPLICATE_SIG;
 
-        $stmt = $pdo->query("select * from invoices WHERE Signature='".$this->signature."'");
-        if ($stmt->rowCount()>0)
-            return self::SAVE_ERROR_DUPLICATE_SIG;
+            // zapisanie do bazy danych
 
- // zapisanie do bazy danych
-
-        $stmt = $pdo->prepare("INSERT INTO invoices VALUES (NULL, :signature, :amount, :issue_date, :maturity_date, :payment_date)");
-        $upload = $stmt->execute(
-            array(
-                ':signature'=>$this->signature,
-                ':amount'=>$this->amount,
-                ':issue_date'=>$this->issue_date,
-                ':maturity_date'=>$this->maturity_date,
-                ':payment_date'=>$this->payment_date,
-
-            )
-        );
+            $stmt = $this->pdo->prepare("INSERT INTO invoices VALUES (NULL, :signature_id, :signature, :amount, :issue_date, :maturity_date, :payment_date)");
+            $upload = $stmt->execute(
+                array(
+                    ':signature_id' => $this->signature_id,
+                    ':signature' => $this->signature,
+                    ':amount' => $this->amount,
+                    ':issue_date' => $this->issue_date,
+                    ':maturity_date' => $this->maturity_date,
+                    ':payment_date' => $this->payment_date
+                )
+            );
+        }
 
 // wyświetlenie komunikatu o stanie zapisu
 
@@ -133,16 +160,26 @@ class InvoiceClass
             return self::SAVE_ERROR_DB;
 
     }
+}
 
+if (@$_GET['edit'] && (int)$_GET['edit']) {
+    $edit = (int)$_GET['edit'];
+    $invoice= new InvoiceClass($edit);
 
+    print_r($invoice);
+}
 
+if (@$_GET['delete'] && (int)$_GET['delete']) {
+    $delete_entry = (int)$_GET['delete'];
 }
 
 $error = array();
 if (count($_POST)) {
     $invoice = new InvoiceClass();
 
-//    $invoice->id = @$_POST['id'];
+    $invoice->id = @$_POST['id'];
+
+    $invoice->signature_id = @$_POST['signature_id'];
 
     $invoice->signature = @$_POST['signature'];
     if (!$invoice->signature) // if null
@@ -168,17 +205,15 @@ if (count($_POST)) {
     if (!count($error)) {
         $upload = $invoice->save_to_db();
         if ($upload==InvoiceClass::SAVE_OK)
-            $success = 'Brawo! Dodales nowy rekord do bazy';
+            $success = 'Brawo! Dodałeś nowy rekord do bazy';
         else if ($upload==InvoiceClass::SAVE_ERROR_DUPLICATE_SIG) {
-            $error['sig'] = 'Faktura o tym numerze już istnieje.';
+            $error['signature'] = 'Faktura o tym numerze już istnieje.';
         }
         else {
-            $error['general'] = 'Blad zapisu do bazy danych.';
+            $error['general'] = 'Błąd zapisu do bazy danych.';
         }
     }
 
-    echo '<pre>';
-    print_r($invoice);
 }
 
 ?>
@@ -195,20 +230,37 @@ if (count($_POST)) {
 
     if (@$success)
         echo '<div style="color:#22aa22; font-weight:bold;">'.$success.'</div><br/>';
-    if (@$error)
+    if (@$error['general'])
         echo '<div style="color:#f00; font-weight:bold;">'.$error['general'].'</div><br/>';
 
 echo '<form action="?" method="post">';
+echo 'Numer umowy: <input name="signature_id" value="'.@$invoice->signature_id.'"/><br>';
 echo 'Numer faktury: <input name="signature" value="'.@$invoice->signature.'"/><br><div style="color:#f00;">'.@$error['signature'].'</div>';
 echo 'Kwota: <input name="amount" value="'.@$invoice->amount.'" /><br><div style="color:#f00;">'.@$error['amount'].'</div>';
 echo 'Data wystawienia: <input name="issue_date" type="date" value="'.@$invoice->issue_date.'" /><br><div style="color:#f00;">'.@$error['issue_date'].'</div>';
 echo 'Data płatności: <input name="maturity_date" type="date" value="'.@$invoice->maturity_date.'" /><br><div style="color:#f00;">'.@$error['maturity_date'].'</div>';
 echo 'Data opłacenia: <input name="payment_date" type="date" value="'.@$invoice->payment_date.'" /><br>';
 
-echo '<button id="btn_send">ZAPISZ</button>';
+echo '<button id="btn_send">'.(@$invoice->id ? 'ZACHOWAJ ZMIANY' : 'DODAJ NOWY').'</button>';
 echo '</form>';
 
 ?>
+
+<br/><br/><br/>
+
+<a href="?">wyczysc formularz</a><br/>
+
+<br/><br/><br/>
+
+<a href="?edit=51">edytuj rekord 1</a><br/>
+<a href="?edit=52">edytuj rekord 2</a><br/>
+<a href="?edit=53">edytuj rekord 3</a><br/>
+
+<br/><br/>
+
+<a href="?delete=51">usun rekord 1</a><br/>
+<a href="?delete=52">usun rekord 2</a><br/>
+<a href="?delete=53">usun rekord 3</a><br/>
 
 </body>
 </html>
