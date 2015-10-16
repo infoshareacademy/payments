@@ -48,7 +48,4 @@
   echo "This is not a valid image file";
  }
 
-
-
-
 ?>
