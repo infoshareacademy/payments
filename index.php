@@ -51,6 +51,8 @@
             <li><a href="#">Faktury</a></li>
           </ul>
         </div>
+        </div>
+      </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Payments</h1>
@@ -61,11 +63,13 @@
             include_once('invoices.php');
           ?>
 
+          </div>
 
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
 </html>
