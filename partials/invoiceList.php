@@ -2,7 +2,7 @@
 
 require_once 'Model/InvoiceClass.php';
 
-echo '<table>';
+echo '<table class="table table-hover">';
 echo '<tr>';
 echo '<th>ID</th>';
 echo '<th>Numer umowy</th>';
