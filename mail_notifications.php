@@ -50,3 +50,4 @@ if ($sqlQueryContent->num_rows > 0) {
 
     $mail->Send();
 }
+$conn->close();
