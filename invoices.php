@@ -61,7 +61,7 @@ echo mysqli_error($conn);
                 // output data of each row
                 while($contract = $invoices->fetch_assoc()) {
                     echo "<tr>" .
-                         "<td>" . $contract["id"]."</td>" .
+                         "<td>". $contract["id"]."</td>" .
                          "<td>". $contract["signature"] ."</td>" .
                          "<td>". $contract["amount"] ."</td>" .
                          "<td>". $contract["issue_date"] ."</td>" .
