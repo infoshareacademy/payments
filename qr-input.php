@@ -13,9 +13,13 @@
  $qrcode = new QrReader($_FILES['qrFile']['tmp_name']);
 
  $text = $qrcode->text();
+//
+//print_r($text);
+// exit;
+// list($nip,$language,$accountNumber,$amount,$operator,$invoiceNumber)
 
-
- list($nip,$language,$accountNumber,$amount,$operator,$invoiceNumber) = explode('|', $text.'<br/>');
+ $qrcode_array = explode('|', $text.'<br/>');
+ print_r($qrcode_array);
 
 
  echo $nip.'<br/>';
