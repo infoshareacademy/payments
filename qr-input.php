@@ -20,12 +20,6 @@
     $text = $qrcode->text();
     $qrcode_array = explode('|', $text.'<br/>');
     list($id,$signature,$amount,$issue_date,$maturity_date,$payment_date) = explode('|', $text.'<br/>');
-    echo $id.'<br/>';
-    echo $signature.'<br/>';
-    echo $amount.'<br/>';
-    echo $issue_date.'<br/>';
-    echo $maturity_date.'<br/>';
-    echo $payment_date.'<br/>';
     break;
 
    case "image/png":
@@ -34,14 +28,11 @@
     $text = $qrcode->text();
     $qrcode_array = explode('|', $text.'<br/>');
     list($id,$signature,$amount,$issue_date,$maturity_date,$payment_date) = explode('|', $text.'<br/>');
-    echo $id.'<br/>';
-    echo $signature.'<br/>';
-    echo $amount.'<br/>';
-    echo $issue_date.'<br/>';
-    echo $maturity_date.'<br/>';
-    echo $payment_date.'<br/>';
+    print_r($maturity_date);
+
     break;
 //    id=76&signature_id=6&signature=PGNIG%2F9&amount=41.00&issue_date=2015-11-01&maturity_date=2015-11-22&payment_date=2015-10-23
+
 
   }
  }
