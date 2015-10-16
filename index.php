@@ -1,6 +1,7 @@
 <?php
 ob_start();
 include 'session_check_header.php';
+require_once 'Model/InvoiceClass.php';
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +60,7 @@ include 'session_check_header.php';
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Payments</h1>
 
+<!--    Tworzenie tabeli z bazy danych -->
 
     <h2>Twoje faktury:</h2>
     <?php
@@ -80,29 +82,31 @@ include 'session_check_header.php';
                 </div>
                 <div class="modal-body">
 
-                    <form>
-                        <div class="form-group">
-                            <label>Numer faktury</label>
-                            <input type="number" class="form-control" placeholder="Podaj numer faktury">
-                        </div>
-                        <div class="form-group">
-                            <label>Kwota</label>
-                            <input type="number" class="form-control" placeholder="Podaj kwotę">
-                        </div>
-                        <div class="form-group">
-                            <label>Data wystawienia</label>
-                            <input type="date" class="form-control" placeholder="Podaj datę wystawienia faktury">
-                        </div>
-                        <div class="form-group">
-                            <label>Data płatności</label>
-                            <input type="date" class="form-control" placeholder="Podaj datę płatności dla tej faktury">
-                        </div>
-                        <div class="form-group">
-                            <label>Data opłacenia</label>
-                            <input type="date" class="form-control"
-                                   placeholder="Podaj do kiedy należy opłacić tą fakturę">
-                        </div>
-                    </form>
+                    <!--Formularz do dodania nowej faktury -->
+
+
+                  <form action="?" method="post">
+                    <div class="form-group">
+                      <label>Numer faktury</label>
+                      <input type="number" class="form-control" placeholder="Podaj numer faktury">
+                    </div>
+                    <div class="form-group">
+                      <label>Kwota</label>
+                      <input type="number" class="form-control"  placeholder="Podaj kwotę">
+                    </div>
+                    <div class="form-group">
+                      <label>Data wystawienia</label>
+                      <input type="date" class="form-control"  placeholder="Podaj datę wystawienia faktury">
+                    </div>
+                    <div class="form-group">
+                      <label>Data płatności</label>
+                      <input type="date" class="form-control"  placeholder="Podaj datę płatności dla tej faktury">
+                    </div>
+                    <div class="form-group">
+                      <label>Data opłacenia</label>
+                      <input type="date" class="form-control"  placeholder="Podaj do kiedy należy opłacić tą fakturę">
+                    </div>
+                  </form>
 
                 </div>
                 <div class="modal-footer">
