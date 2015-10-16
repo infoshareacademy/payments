@@ -6,4 +6,4 @@
  * Time: 16:21
  */
 
-define('ContractsUploadDirectory', '/home/tomek/workspace/contracts_files/');
+define('ContractsUploadDirectory', '/contracts_files/');
