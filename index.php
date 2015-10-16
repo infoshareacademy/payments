@@ -1,7 +1,7 @@
 <?php
 ob_start();
 include 'session_check_header.php';
-require_once 'Model/InvoiceClass.php';
+//require_once 'Model/InvoiceClass.php';
 ?>
 
 <!DOCTYPE html>
@@ -59,59 +59,18 @@ require_once 'Model/InvoiceClass.php';
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Payments</h1>
-
+    <?php include 'partials/invoiceForm.php'; ?>
 
     <h2>Twoje faktury:</h2>
-    <?php
-    include_once('invoices.php');
-    ?>
+
+    <?php include 'partials/invoiceList.php'; ?>
+
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Dodaj fakturę
     </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Dodaj fakturę</h4>
-                </div>
-                <div class="modal-body">
 
-                  <form>
-                    <div class="form-group">
-                      <label>Numer faktury</label>
-                      <input type="number" class="form-control" placeholder="Podaj numer faktury">
-                    </div>
-                    <div class="form-group">
-                      <label>Kwota</label>
-                      <input type="number" class="form-control"  placeholder="Podaj kwotę">
-                    </div>
-                    <div class="form-group">
-                      <label>Data wystawienia</label>
-                      <input type="date" class="form-control"  placeholder="Podaj datę wystawienia faktury">
-                    </div>
-                    <div class="form-group">
-                      <label>Data płatności</label>
-                      <input type="date" class="form-control"  placeholder="Podaj datę płatności dla tej faktury">
-                    </div>
-                    <div class="form-group">
-                      <label>Data opłacenia</label>
-                      <input type="date" class="form-control"  placeholder="Podaj do kiedy należy opłacić tą fakturę">
-                    </div>
-                  </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-primary">Zapisz</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
