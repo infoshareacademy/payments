@@ -15,16 +15,18 @@ if (@$_POST['inputPassword'])
 
 if (!@$_SESSION['user_login'] || !@$_SESSION['user_pass']) {
     $error = 'Podaj login i haslo';
-} else {
-    if ($_SESSION['user_login'] == ADMIN_LOGIN && $_SESSION['user_pass'] == ADMIN_PASS) {
-        header("location: index.php");
+}
+else {
+    if ($_SESSION['user_login'] == ADMIN_LOGIN && $_SESSION['user_pass']== ADMIN_PASS) {
+        header ("location: index.php");
         $error = '';
-    } else {
+    }
+    else {
         $error = 'Bledny login lub haslo';
     }
 }
 
-if ($error) {
+if($error) {
 
     echo '
 
@@ -52,7 +54,7 @@ if ($error) {
 
         <!-- Top content -->
         <div class="top-content">
-        	
+
             <div class="inner-bg">
                 <div class="container">
                     <div class="row">
@@ -67,7 +69,7 @@ if ($error) {
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>' . $error . '</h3>
+                        			<h3>'.$error.'</h3>
                         		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
@@ -106,7 +108,7 @@ if ($error) {
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
 
