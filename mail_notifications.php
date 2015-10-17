@@ -35,7 +35,6 @@ while ($result = $sqlQueryContent->fetch_assoc()) {
         "<td>" . $result["Maturity_date"] . "</td>"
         . "</tr>";
 }
-
 // End of Creating PhpMailer Body.
 
 $mail = new PHPMailer();
