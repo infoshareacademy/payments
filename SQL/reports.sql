@@ -7,7 +7,7 @@ UPDATE invoices SET Payment_date = Maturity_date+5 WHERE Maturity_date BETWEEN '
 DROP VIEW payment_report;
 DROP VIEW exceeded_payment;
 
-# Raport wszystkich faktur po terminie płatności od najmłodszych
+# Raport wszystkich faktur sortowanych po terminie płatności od najmłodszych
 CREATE VIEW  payment_report AS SELECT invoices.Signature, invoices.Amount, invoices.Maturity_date, invoices.Payment_date, contract.companyName FROM invoices, contract WHERE invoices.id_contract = contract.id ORDER BY Maturity_date DESC ;
 
 # Raport przekroczonych płatności po dacie płatności
@@ -24,3 +24,13 @@ SELECT sum(Amount) FROM invoices WHERE Payment_date IS NULL AND Maturity_date < 
 
 # Suma faktur które zapłacono po terminie
 SELECT sum(Amount) FROM invoices WHERE Payment_date>Maturity_date;
+
+# Suma kwot w podziale na poszczególne firmy od największej do najmniejszej sumy
+SELECT companyName, sum(Amount) FROM payment_report GROUP BY companyName ORDER BY sum(Amount) DESC ;
+
+# Lista faktur niezapłaconych sortowana do rosnąco
+SELECT companyName, Signature, Amount, Maturity_date FROM payment_report WHERE Payment_date IS NULL ORDER BY Maturity_date ASC ;
+
+# Lista faktur zapłaconych po terminie
+SELECT companyName, Signature, Amount, Maturity_date, Payment_date FROM payment_report WHERE Payment_date>Maturity_date ORDER BY Payment_date DESC;
+
