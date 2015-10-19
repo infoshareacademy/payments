@@ -9,6 +9,7 @@
 require_once 'ContractClass.php';
 include 'ContractForm.php';
 //tworzenie tabelki HTML
+echo '<h2>List of contracts:</h2>';
 echo '<table class="table table-hover">';
 echo '<tr>';
 echo '<th>ID</th>';
