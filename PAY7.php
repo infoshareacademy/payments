@@ -6,6 +6,8 @@
  * Time: 12:22
  */
 include 'config.php';
+include 'session_check_header.php';
+
 
 function upload_file($file_field, $force_type='') {
     $user_filename = $_POST['contractId'];
