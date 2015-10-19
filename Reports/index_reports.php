@@ -7,7 +7,7 @@
  */
 
 //ob_start();
-include 'session_check_header.php';
+//include '../session_check_header.php';
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -17,7 +17,7 @@ include 'session_check_header.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <title>Pied Piper payments</title>
-        <link href="css/dashboard.css" rel="stylesheet">
+        <link href="../Contracts/css/dashboard.css" rel="stylesheet">
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     </head>
     <body>
@@ -35,9 +35,9 @@ include 'session_check_header.php';
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="logout.php">Wyloguj</a></li>
+                    <li><a href="../Contracts/logout.php">Wyloguj</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-user"
-                                          aria-hidden="true"></span>&nbsp;<?php echo $_SESSION ['user_login']; ?></a></li>
+<!--                                          aria-hidden="true"></span>&nbsp;--><?php //echo $_SESSION ['user_login']; ?><!--</a></li>-->
                 </ul>
             </div>
         </div>
@@ -56,7 +56,7 @@ include 'session_check_header.php';
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Reports</h1>
-        <h2>Choose report:</h2>
+        <h2>Pre-defined reports:</h2>
         <?php include 'sqlReports.php'; ?>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
