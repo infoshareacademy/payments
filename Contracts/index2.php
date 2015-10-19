@@ -56,7 +56,6 @@ include 'session_check_header.php';
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Contracts</h1>
-        <h2>List of contracts:</h2>
         <?php include 'ContractsMainPage.php'; ?>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -64,7 +63,7 @@ include 'session_check_header.php';
     </body>
     </html>
     <br/><br/>
-<!--do wyjaœnienia z Paw³em co to robi - bo mi blokuje wyœwietlanie strony-->
+<!--do wyjaï¿½nienia z Pawï¿½em co to robi - bo mi blokuje wyï¿½wietlanie strony-->
 <?php
 //$content = ob_get_contents();
 //$length = strlen($content);

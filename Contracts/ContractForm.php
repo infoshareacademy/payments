@@ -49,6 +49,8 @@ if (count($_POST)) {
 ?>
 <!--Czysty formularz rejestracji i edycji danch-->
 <?php
+echo '<h2>Add/modify contract details</h2>';
+
 if (@$success)
     echo '<div style="color:#22aa22; font-weight:bold;">' . $success . '</div><br/>';
 if (@$error['general'])
