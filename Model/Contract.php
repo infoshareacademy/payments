@@ -6,10 +6,9 @@
  * Time: 15:39
  */
 
-namespace piedPiperPaymentModel;
 
 
-class contract
+class Contract
 {
 
 }
