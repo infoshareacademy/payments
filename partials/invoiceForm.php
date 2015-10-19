@@ -36,9 +36,6 @@ if (count($_POST)) {
         $error['maturity_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
 
     $invoice->payment_date = @$_POST['payment_date'];
-//    if (!$invoice->payment_date)
-//        $error['payment_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
-
 
     if (!count($error)) {
 
@@ -69,8 +66,8 @@ if (@$error['general'])
     echo '<div style="color:#f00; font-weight:bold;">' . $error['general'] . '</div><br/>';
 
 echo '<form action="?" method="post">';
-echo '<input name="id" type="hidden" value="' . @$invoice->id . '"/><br>';
-echo 'Numer umowy: <input name="signature_id" value="' . @$invoice->signature_id . '"/><br>';
+echo '<div class ="form-group"><input name="id" type="hidden" value="' . @$invoice->id . '"/></div><br>';
+echo '<input name="signature_id" type="hidden" value="' . @$invoice->signature_id . '"/><br>';
 
 require_once('functions/select.php');
 renderSelectInput($invoice->signature_id);

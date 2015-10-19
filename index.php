@@ -62,16 +62,9 @@ include 'session_check_header.php';
     <?php include 'partials/invoiceForm.php'; ?>
 
     <h2>Twoje faktury:</h2>
-
     <?php include 'partials/invoiceList.php'; ?>
-
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Dodaj fakturę
-    </button>
-
-
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>

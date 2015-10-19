@@ -3,7 +3,7 @@
 
 function renderSelectInput($selectedItemId) {
 ?>
-Umowa: <select>
+Umowa: <select name="signature_id">
     <?php
 
     $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
