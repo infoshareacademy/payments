@@ -9,12 +9,6 @@ include 'config.php';
 include 'session_check_header.php';
 
 
-
-
-
-
-
-
 function upload_file($file_field, $force_type='') {
     $user_filename = $_POST['contractId'];
     $extension = substr($user_filename, strrpos($user_filename, '.')+1, 5);
@@ -36,8 +30,8 @@ function upload_file($file_field, $force_type='') {
         return 'OK';
     else
         return 'BLAD';
+  
 }
-
 
 if (count($_FILES)) {
     $status = upload_file($_FILES['upload'], 'application/pdf');
