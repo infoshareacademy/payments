@@ -46,7 +46,7 @@ if (count($_POST)) {
 
         $upload = $invoice->save_to_db();
         if ($upload == InvoiceClass::SAVE_OK) {
-            $success = 'Brawo! Dodałeś nowy rekord do bazy';
+            $success = 'Brawo! Pomyślnie zapisano do bazy';
             $invoice = new InvoiceClass();
         } else if ($upload == InvoiceClass::SAVE_ERROR_DUPLICATE_SIG) {
             $error['signature'] = 'Faktura o tym numerze już istnieje.';
