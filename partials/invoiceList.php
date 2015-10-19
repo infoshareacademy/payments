@@ -23,7 +23,7 @@ foreach ($invoiceList as $record) {
     echo '<td>'.$record['Issue_date'].'</td>';
     echo '<td>'.$record['Maturity_date'].'</td>';
     echo '<td>'.$record['Payment_date'].'</td>';
-    echo '<td><a href="?edit='.$record['id'].'">edytuj</a> <a href="?delete='.$record['id'].'">usun</a></td>';
+    echo '<td><a href="?edit='.$record['id'].'">edytuj</a></td>';
     echo '</tr>';
 }
 echo '</table>';
