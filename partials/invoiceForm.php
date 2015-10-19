@@ -7,6 +7,7 @@ if (@$_GET['edit'] && (int)$_GET['edit']) {
     $invoice = new InvoiceClass($edit);
 } elseif (@$_GET['delete'] && (int)$_GET['delete']) {
     $delete_entry = (int)$_GET['delete'];
+    $invoice = new InvoiceClass();
 } else {
     $invoice = new InvoiceClass();
 }

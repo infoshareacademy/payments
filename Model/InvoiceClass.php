@@ -105,7 +105,6 @@ class InvoiceClass
 
     public function save_to_db() {
 
-        print_r($this);
 
         if ($this->id) {
             $stmt = $this->pdo->prepare("UPDATE invoices SET
@@ -119,7 +118,6 @@ class InvoiceClass
                 WHERE id=:identity
                 ");
 
-            print_r($stmt);
 
             $input_parameters = array(
                 ':identity' => $this->id,
@@ -131,7 +129,6 @@ class InvoiceClass
                 ':data_oplacenia' => $this->payment_date
             );
 
-            print_r($input_parameters);
 
             if($input_parameters[':data_oplacenia'] == null) {
                 $input_parameters['::data_oplacenia'] = 'NULL';

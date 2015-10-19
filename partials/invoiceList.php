@@ -6,7 +6,6 @@ echo '<table class="table table-hover">';
 echo '<tr>';
 echo '<th>ID</th>';
 echo '<th>Nazwa faktury</th>';
-echo '<th>Numer umowy</th>';
 echo '<th>Kwota</th>';
 echo '<th>Data wystawienia</th>';
 echo '<th>Data płatności</th>';
@@ -18,8 +17,8 @@ foreach ($invoiceList as $record) {
 
     echo '<tr>';
     echo '<td>'.$record['id'].'</td>';
+//    echo '<td>'.$record['id_contract'].'</td>';
     echo '<td>'.$record['Signature'].'</td>';
-    echo '<td>'.$record['id_contract'].'</td>';
     echo '<td>'.$record['Amount'].'</td>';
     echo '<td>'.$record['Issue_date'].'</td>';
     echo '<td>'.$record['Maturity_date'].'</td>';
