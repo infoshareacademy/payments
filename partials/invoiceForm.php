@@ -37,9 +37,6 @@ if (count($_POST)) {
         $error['maturity_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
 
     $invoice->payment_date = @$_POST['payment_date'];
-//    if (!$invoice->payment_date)
-//        $error['payment_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
-
 
     if (!count($error)) {
 
