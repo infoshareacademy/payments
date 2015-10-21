@@ -70,7 +70,7 @@ echo '<form action="?" method="post">';
 echo '<div class ="form-group"><input name="id" type="hidden" value="' . @$invoice->id . '"/></div><br>';
 echo '<input name="signature_id" type="hidden" value="' . @$invoice->signature_id . '"/><br>';
 
-require_once('functions/select.php');
+require_once __DIR__ . '/../functions/select.php';
 renderSelectInput($invoice->signature_id);
 
 echo 'Numer faktury: <input name="signature" value="' . @$invoice->signature . '"/><br><div style="color:#f00;">' . @$error['signature'] . '</div>';
