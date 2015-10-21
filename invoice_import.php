@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<?php include 'src/partials/header.php'; ?>
+
 <form action="qr-input.php" method="post" enctype="multipart/form-data">
     <input type="file" name="qrFile"/><br/>
     <input type="submit" value="send"/>
 </form>
 
-
-
-</body>
-</html>
-
+<?php include 'src/partials/footer.php'; ?>
 
