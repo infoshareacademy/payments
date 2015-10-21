@@ -9,5 +9,5 @@
 $content = ob_get_contents();
 $length = strlen($content);
 header('Content-Length: ' . $length);
-echo $content;
+ob_flush();
 ?>

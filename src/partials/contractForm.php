@@ -16,7 +16,7 @@ if (@$_GET['edit'] && (int)$_GET['edit']) {
 error_reporting(0);
 if (isset($_GET['delete']) and is_numeric($_GET['delete'])) {
     $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
-    $stmt = $pdo->query("DELETE FROM contract WHERE id =" . (int)$_GET['delete']);
+    $stmt = $pdo->query("DELETE FROM contract WHERE id =" . $_GET['delete']);
     $delete = $pdo->exec(@$stmt);
     echo '<br><div style="color:#f00;">Contract deleted successfully</div><br/>';
 }

@@ -5,7 +5,6 @@
  * Date: 2015-10-17
  * Time: 22:28
  */
-
 require_once __DIR__ . '/../Model/ContractClass.php';
 include __DIR__ . '/contractForm.php';
 
