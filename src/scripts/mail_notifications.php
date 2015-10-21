@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '../../lib/phpMailer/class.phpmailer.php';
+require __DIR__ . '/../../lib/phpMailer/class.phpmailer.php';
 
 $servername = "test.payments.infoshareaca.nazwa.pl";
 $username = "infoshareaca_7";

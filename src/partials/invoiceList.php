@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../Model/InvoiceClass.php';
+require_once __DIR__ . '/../Model/InvoiceClass.php';
 
 echo '<table class="table table-hover">';
 echo '<tr>';

@@ -6,8 +6,8 @@
  * Time: 22:28
  */
 
-require_once __DIR__ . '../Model/ContractClass.php';
-include __DIR__ . 'contractForm.php';
+require_once __DIR__ . '/../Model/ContractClass.php';
+include __DIR__ . '/contractForm.php';
 
 //tworzenie tabelki HTML
 echo '<h2>List of contracts:</h2>';

@@ -5,7 +5,7 @@
  * Date: 2015-10-17
  * Time: 22:28
  */
-require_once __DIR__ . '../Model/ContractClass.php';
+require_once __DIR__ . '/../Model/ContractClass.php';
 
 if (@$_GET['edit'] && (int)$_GET['edit']) {
     $edit = (int)$_GET['edit'];
