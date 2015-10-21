@@ -1,6 +1,17 @@
 <?php
-require 'phpMailer/class.phpmailer.php';
-require 'sqli_connection_header.php';
+require __DIR__ . '../../lib/phpMailer/class.phpmailer.php';
+
+$servername = "test.payments.infoshareaca.nazwa.pl";
+$username = "infoshareaca_7";
+$password = "F0r3v3r!";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $username);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 
 $sql = 'SELECT id, Signature, Amount, Issue_date, Maturity_date FROM invoices WHERE Maturity_date = CURRENT_DATE ';

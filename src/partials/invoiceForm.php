@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model/InvoiceClass.php';
+require_once __DIR__ . '../Model/InvoiceClass.php';
 
 if (@$_GET['edit'] && (int)$_GET['edit']) {
     $edit = (int)$_GET['edit'];
