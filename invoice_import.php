@@ -1,8 +1,7 @@
-<?php include 'src/partials/header.php'; ?>
+<?php
+require_once 'src/functions/layout.php';
+require_once 'src/partials/invoiceImport.php';
 
-<?php require_once 'src/partials/invoiceImport.php';
-    echo invoiceImport();
-?>
+echo layout('', invoiceImport());
 
-<?php include 'src/partials/footer.php'; ?>
 
