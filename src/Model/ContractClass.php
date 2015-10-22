@@ -32,7 +32,7 @@ class ContractClass
             }
         }
     }
-//    modyfikowanie umów
+//    modyfikowanie umï¿½w
     public function __set($param_name, $param_value) {
         switch ($param_name) {
             case 'id':
@@ -77,7 +77,7 @@ class ContractClass
                 $input_parameters
             );
         }
-//po³¹czenie z baz¹ i sprawdzenie czy ju¿ jest taka umowa
+//poï¿½ï¿½czenie z bazï¿½ i sprawdzenie czy juï¿½ jest taka umowa
         else {
             $stmt = $this->pdo->query("SELECT * FROM contract WHERE Signature='" . $this->signature . "'");
             if ($stmt->rowCount() > 0)
@@ -96,7 +96,7 @@ class ContractClass
         else
             return self::SAVE_ERROR_DB;
     }
-// Pobieranielisty umów do wyœwietlenia w tabeli generowanej w ContractsMainPage.php
+// Pobieranielisty umï¿½w do wyï¿½wietlenia w tabeli generowanej w ContractsMainPage.php
     public static function ContractTable() {
         $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
         $stmt = $pdo->query('SELECT * FROM contract');

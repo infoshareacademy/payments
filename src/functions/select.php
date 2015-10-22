@@ -2,9 +2,9 @@
 <?php
 
 function renderSelectInput($selectedItemId) {
-?>
-Umowa: <select name="signature_id">
-    <?php
+    $output = '';
+
+    $output .= 'Umowa: <select name="signature_id">';
 
     $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
     $stmt = $pdo->query('SELECT id, companyName FROM contract');
@@ -12,19 +12,17 @@ Umowa: <select name="signature_id">
 
     $selected_contract = $selectedItemId;
     foreach ($contracts as $one_contract) {
-        echo '<option value="' . $one_contract['id'] . '" ';
+        $output .= '<option value="' . $one_contract['id'] . '" ';
         if (
             isset($selected_contract) &&
             $selected_contract == $one_contract['id']
         ) {
-            echo 'selected';
+            $output .= 'selected';
         }
-        echo '>' . $one_contract['companyName'] . '</option>';
+        $output .= '>' . $one_contract['companyName'] . '</option>';
     }
-    print_r($contracts);
-    ?>
-</select><br>
-<?php
-}
 
-?>
+    $output .= '</select><br>';
+
+    return $output;
+}
