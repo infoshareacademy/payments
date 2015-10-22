@@ -2,29 +2,39 @@
 
 require_once __DIR__ . '/../Model/InvoiceClass.php';
 
-echo '<table class="table table-hover">';
-echo '<tr>';
-echo '<th>ID</th>';
-echo '<th>Nazwa faktury</th>';
-echo '<th>Kwota</th>';
-echo '<th>Data wystawienia</th>';
-echo '<th>Data płatności</th>';
-echo '<th>Data opłacenia</th>';
-echo '</tr>';
+function invoiceList()
+{
+    $output = '';
 
-$invoiceList = InvoiceClass::invoiceTable();
-foreach ($invoiceList as $record) {
+    $output .= '<br/><br/>';
+    $output .= '<h1 class="page-header">Payment List</h1>';
 
-    echo '<tr>';
-    echo '<td>'.$record['id'].'</td>';
-//    echo '<td>'.$record['id_contract'].'</td>';
-    echo '<td>'.$record['Signature'].'</td>';
-    echo '<td>'.$record['Amount'].'</td>';
-    echo '<td>'.$record['Issue_date'].'</td>';
-    echo '<td>'.$record['Maturity_date'].'</td>';
-    echo '<td>'.$record['Payment_date'].'</td>';
-    echo '<td><a href="?edit='.$record['id'].'">edytuj</a></td>';
-    echo '</tr>';
+    $output .= '<table class="table table-hover">';
+    $output .= '<tr>';
+    $output .= '<th>ID</th>';
+    $output .= '<th>Nazwa faktury</th>';
+    $output .= '<th>Kwota</th>';
+    $output .= '<th>Data wystawienia</th>';
+    $output .= '<th>Data płatności</th>';
+    $output .= '<th>Data opłacenia</th>';
+    $output .= '</tr>';
+
+    $invoiceList = InvoiceClass::invoiceTable();
+    foreach ($invoiceList as $record) {
+
+        $output .= '<tr>';
+        $output .= '<td>' . $record['id'] . '</td>';
+//    $output .= '<td>'.$record['id_contract'].'</td>';
+        $output .= '<td>' . $record['Signature'] . '</td>';
+        $output .= '<td>' . $record['Amount'] . '</td>';
+        $output .= '<td>' . $record['Issue_date'] . '</td>';
+        $output .= '<td>' . $record['Maturity_date'] . '</td>';
+        $output .= '<td>' . $record['Payment_date'] . '</td>';
+        $output .= '<td><a href="?edit=' . $record['id'] . '">edytuj</a></td>';
+        $output .= '</tr>';
+    }
+    $output .= '</table>';
+    $output .= '<br/><br/>';
+
+    return $output;
 }
-echo '</table>';
-echo '<br/><br/>';

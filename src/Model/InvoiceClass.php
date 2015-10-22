@@ -9,13 +9,13 @@
 class InvoiceClass
 {
 
-    public $id;
-    public $signature_id;
-    public $signature;
-    public $amount;
-    public $issue_date;
-    public $maturity_date;
-    public $payment_date;
+    protected $id;
+    protected $signature_id;
+    protected $signature;
+    protected $amount;
+    protected $issue_date;
+    protected $maturity_date;
+    protected $payment_date;
 
     const MAX_LENGHT = 70;
     const SAVE_OK = 1;

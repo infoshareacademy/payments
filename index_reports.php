@@ -1,7 +1,8 @@
 <?php include 'src/partials/header.php'; ?>
 
-        <h1 class="page-header">Reports</h1>
-        <h2>Pre-defined reports:</h2>
-<?php include 'src/partials/sqlReports.php'; ?>
+
+<?php require_once 'src/partials/sqlReports.php';
+        echo sqlReports();
+?>
 
 <?php include 'src/partials/footer.php'; ?>
