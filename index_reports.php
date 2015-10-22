@@ -1,8 +1,6 @@
-<?php include 'src/partials/header.php'; ?>
+<?php
+require_once 'src/functions/layout.php';
+require_once 'src/partials/sqlReports.php';
 
+echo layout('', sqlReports());
 
-<?php require_once 'src/partials/sqlReports.php';
-        echo sqlReports();
-?>
-
-<?php include 'src/partials/footer.php'; ?>

@@ -2,7 +2,6 @@
 
 function layout($name, $content) {
 
-
 // Include this file on every new page you create.
 session_start();
 
@@ -11,9 +10,6 @@ if (!@$_SESSION['user_login'] || !@$_SESSION['user_pass']) {
 }
 
 
-//    My name is "$name". I am printing some $foo->foo.
-//    Now, I am printing some {$foo->bar[1]}.
-//This should print a capital 'A': \x41
 return <<<EOT
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +43,7 @@ return <<<EOT
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout.php">Wyloguj</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"
-                                      aria-hidden="true"></span>&nbsp;<?php echo $_SESSION ['user_login']; ?></a></li>
+                                      aria-hidden="true"></span>&nbsp;{$_SESSION ['user_login']}</a></li>
             </ul>
         </div>
 
@@ -69,7 +65,7 @@ return <<<EOT
     </div>
 </div>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"><?php echo $content ?>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">{$content}
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -77,5 +73,4 @@ return <<<EOT
 </body>
 </html>
 EOT;
-
 }
