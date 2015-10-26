@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marek
- * Date: 14.10.15
- * Time: 13:22
- */
+require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+
 class InvoiceClass
 {
 
@@ -25,9 +21,10 @@ class InvoiceClass
 
     private $pdo;
 
+
     public function __construct($id = null)
     {
-        $this->pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+        $this->pdo = DBHandler::getPDO();
 
         if ($id) {
             $stmt = $this->pdo->query("SELECT * FROM invoices WHERE id=" . (int)$id);
@@ -101,8 +98,8 @@ class InvoiceClass
     public function __get($param_name)
     {
         return $this->$param_name;
-    }
 
+    }
     public function save_to_db()
     {
 

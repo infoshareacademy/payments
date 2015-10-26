@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: tomek
- * Date: 2015-10-17
- * Time: 19:02
- */
+require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+
 class ContractClass
 {
     public $id;
@@ -18,7 +14,7 @@ class ContractClass
     private $pdo;
     public function __construct($id = null)
     {
-        $this->pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+        $this->pdo = DBHandler::getPDO();
         if ($id) {
             $stmt = $this->pdo->query("select * from contract where id=".(int)$id);
             if ($stmt->rowCount()>0) {
