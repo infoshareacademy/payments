@@ -8,7 +8,6 @@ $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazw
 $futureInvoices = $pdo->query('SELECT * FROM payment_report WHERE Payment_date IS NULL AND Maturity_date > CURDATE() AND Maturity_date < date_add(CURDATE(), INTERVAL 30 DAY) ORDER BY Maturity_date ASC ;');
 $futureInvoices = $futureInvoices->fetchAll(PDO::FETCH_ASSOC);
 
-$futureInvoicesLength = count($futureInvoices);
 $startTime = strtotime('today');
 $endTime = $startTime + 30 * 86400;
 
@@ -24,10 +23,7 @@ for ( $i = $startTime; $i <= $endTime; $i = $i + 86400 ) {
     echo '<tr>';
     echo '<td>'.$thisDate.'<br></td>';
 
-    if($thisDate) {
-        for($i=0; $i < $futureInvoicesLength; $i++ ){
-            print
-        }
+    if($futureInvoices[0]['Maturity_date']==$thisDate ) {
         echo '<td>'.$futureInvoices[0]['companyName'].'<br></td>';
         echo '<td>'.$futureInvoices[0]['Signature'].'<br></td>';
         echo '<td>'.$futureInvoices[0]['Amount'].'<br></td>';

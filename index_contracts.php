@@ -1,6 +1,6 @@
-<?php include 'src/partials/header.php'; ?>
+<?php
 
-<h1 class="page-header">Contracts</h1>
-<?php include 'src/partials/contractsMainPage.php'; ?>
+require_once 'src/functions/layout.php';
+require_once 'src/partials/contractsMainPage.php';
+echo layout('', contractsMainPage());
 
-<?php include 'src/partials/footer.php'; ?>

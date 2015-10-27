@@ -1,10 +1,9 @@
-<?php include 'src/partials/header.php'; ?>
+<?php
+require_once 'src/functions/layout.php';
+require_once 'src/partials/invoiceForm.php';
+require_once 'src/partials/invoiceList.php';
 
-    <h1 class="page-header">Payments</h1>
-<?php include 'src/partials/invoiceForm.php'; ?>
+echo layout('', invoiceForm() . invoiceList());
 
-    <h2>Twoje faktury:</h2>
-<?php include 'src/partials/invoiceList.php'; ?>
 
-<?php include 'src/partials/footer.php'; ?>
 

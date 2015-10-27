@@ -6,32 +6,43 @@
  * Time: 22:28
  */
 require_once __DIR__ . '/../Model/ContractClass.php';
-include __DIR__ . '/contractForm.php';
+require_once __DIR__ . '/contractForm.php';
+
+function contractsMainPage()
+{
+    $output = '';
+
+    $output .= '<h1 class="page-header">Contracts</h1>';
+
+    $output .= contractForm();
+
 
 //tworzenie tabelki HTML
-echo '<h2>List of contracts:</h2>';
-echo '<table class="table table-hover">';
-echo '<tr>';
-echo '<th>ID</th>';
-echo '<th>Company Name</th>';
-echo '<th>Contract number.</th>';
-echo '<th>Edit company details</th>';
-echo '<th>Delete contract record</th>';
+    $output .= '<h2>List of contracts:</h2>';
+    $output .= '<table class="table table-hover">';
+    $output .= '<tr>';
+    $output .= '<th>ID</th>';
+    $output .= '<th>Company Name</th>';
+    $output .= '<th>Contract number.</th>';
+    $output .= '<th>Edit company details</th>';
+    $output .= '<th>Delete contract record</th>';
 
-echo '</tr>';
+    $output .= '</tr>';
 //Zdefiniowana w ContractClass funkcja statyczna obiektu - wy�wietla tablice z selecta all z contract
-$ContractsMainPage = ContractClass::ContractTable();
+    $ContractsMainPage = ContractClass::ContractTable();
 //Zamienianie tablicy z ContractTable na tabelk� html
-foreach ($ContractsMainPage as $item) {
-    echo '<tr>';
-    echo '<td>'.$item['id'].'</td>';
-    echo '<td>'.$item['companyName'].'</td>';
-    echo '<td>'.$item['Signature'].'</td>';
-    echo '<td><a href="?edit='.$item['id'].'">edit</a></td>';
-    echo '<td><form method="get"><button name="delete" type="submit" value="'.$item['id'].'">delete<div style="color:#f00;"></div></td>';
+    foreach ($ContractsMainPage as $item) {
+        $output .= '<tr>';
+        $output .= '<td>' . $item['id'] . '</td>';
+        $output .= '<td>' . $item['companyName'] . '</td>';
+        $output .= '<td>' . $item['Signature'] . '</td>';
+        $output .= '<td><a href="?edit=' . $item['id'] . '">edit</a></td>';
+        $output .= '<td><form method="get"><button name="delete" type="submit" value="' . $item['id'] . '">delete<div style="color:#f00;"></div></td>';
 
-    echo '</tr>';
+        $output .= '</tr>';
+    }
+    $output .= '</table>';
+    $output .= '<br/><br/>';
+
+    return $output;
 }
-echo '</table>';
-echo '<br/><br/>';
-

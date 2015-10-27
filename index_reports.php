@@ -1,7 +1,6 @@
-<?php include 'src/partials/header.php'; ?>
+<?php
+require_once 'src/functions/layout.php';
+require_once 'src/partials/sqlReports.php';
 
-        <h1 class="page-header">Reports</h1>
-        <h2>Pre-defined reports:</h2>
-<?php include 'src/partials/sqlReports.php'; ?>
+echo layout('', sqlReports());
 
-<?php include 'src/partials/footer.php'; ?>
