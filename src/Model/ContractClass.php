@@ -11,6 +11,7 @@ class ContractClass
     public $id;
     public $companyName;
     public $signature;
+    public $fileName;
     const MAX_LENGHT = 200;
     const SAVE_OK = 1;
     const SAVE_ERROR_DB = -1;

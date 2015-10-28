@@ -6,6 +6,7 @@
  * Time: 22:28
  */
 require_once __DIR__ . '/../Model/ContractClass.php';
+require_once __DIR__ . '/../functions/uploadPDF.php';
 
 
 function contractForm()
@@ -29,9 +30,10 @@ function contractForm()
     $error = array();
     if (count($_POST)) {
         $contract = new ContractClass();
-
         $contract->signature = @$_POST['signature'];
         $contract->companyName = @$_POST['companyName'];
+        $contract-> fileName = @$_POST ['name'];
+
         if (!$contract->signature) // if null
             $error['signature'] = 'Contract number cannot be empty';
         if (!$contract->companyName) // if null
@@ -44,6 +46,9 @@ function contractForm()
             if ($upload == ContractClass::SAVE_OK) {
                 $success = 'Contract added to database';
                 $contract = new ContractClass();
+                if (count($_FILES)){
+                    $status = upload_file($_FILES['upload'],'application/pdf');
+                }
             } else if ($upload == ContractClass::SAVE_ERROR_DUPLICATE_SIGNATURE) {
                 $error['signature'] = 'Cant add contract. Contract number already exist, if u want change parameters of the contract, move to update section';
             } else {
@@ -51,17 +56,20 @@ function contractForm()
             }
         }
     }
-
     $output .= '<h2>Add/modify contract details</h2>';
 
     if (@$success)
         $output .= '<div style="color:#22aa22; font-weight:bold;">' . $success . '</div><br/>';
     if (@$error['general'])
         $output .= '<div style="color:#f00; font-weight:bold;">' . $error['general'] . '</div><br/>';
-    $output .= '<form action="?" method="post">';
+    $output .= '<form action="?" method="post" enctype="multipart/form-data">';
     $output .= 'Signature : <input name="signature" value="' . @$contract->signature . '"/><br><div style="color:#f00;">' . @$error['signature'] . '</div>';
     $output .= '</br>';
     $output .= 'Company : <input name="companyName" value="' . @$contract->companyName . '"/><br><div style="color:#f00;">' . @$error['companyName'] . '</div>';
+    $output .= '</br>';
+    $output .= 'File name: <input name="name" value=""/>';
+    $output .= '</br></br>';
+    $output .= 'PDF file: <input type="file" name="upload" value=""/>';
     $output .= '</br>';
     $output .= (@$contract->id ?
         (
@@ -71,6 +79,7 @@ function contractForm()
         '<button id="btn_send">' . 'Add contract details' . '</button>');
     $output .= '</form>';
     $output .= '</br></br>';
+
 
     return $output;
 }
