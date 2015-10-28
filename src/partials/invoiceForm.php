@@ -6,9 +6,7 @@ require_once __DIR__ . '/../functions/select.php';
 function invoiceForm()
 {
 
-    $output = '';
 
-    $output .= '<h1 class="page-header">Payments</h1>';
 
     if (@$_GET['edit'] && (int)$_GET['edit']) {
         $edit = (int)$_GET['edit'];
@@ -65,14 +63,33 @@ function invoiceForm()
 
     }
 
+    $output = '';
+    ob_start(); ?>
 
-    if (@$success)
-        $output .= '<div style="color:#22aa22; font-weight:bold;">' . $success . '</div><br/>';
-    if (@$error['general'])
-        $output .= '<div style="color:#f00; font-weight:bold;">' . $error['general'] . '</div><br/>';
+    <h1 class="page-header">Payments</h1>
 
-    $output .= '<form action="?" method="post">';
-    $output .= '<div class ="form-group"><input name="id" type="hidden" value="' . @$invoice->id . '"/></div><br>';
+    <?php if (@$success) { ?>
+    <div style="color:#22aa22; font-weight:bold;"><?=$success?></div><br/>
+    <?php } ?>
+
+    <?php if (@$error['general']) { ?>
+    <div style="color:#f00; font-weight:bold;"><?=$error['general']?></div><br/>
+    <?php } ?>
+
+    <form action="?" method="post" class="form-horizontal" >
+
+        <input name="id" type="hidden" value="<?=@$invoice->id?>"/><br>
+        <input name="signature_id" type="hidden" value="<?=@$invoice->signature_id?>"/><br>
+
+
+    <?php
+    $output .= ob_get_clean();
+
+
+//    ----------------- POCZĄTEK FORMULARZA ---------------------------------------------
+
+
+    $output .= '<input name="id" type="hidden" value="' . @$invoice->id . '"/><br>';
     $output .= '<input name="signature_id" type="hidden" value="' . @$invoice->signature_id . '"/><br>';
 
 
