@@ -32,7 +32,7 @@ function contractForm()
         $contract = new ContractClass();
         $contract->signature = @$_POST['signature'];
         $contract->companyName = @$_POST['companyName'];
-        $contract-> fileName = @$_POST ['name'];
+        $contract-> fileName = @$_POST ['fileName'];
 
         if (!$contract->signature) // if null
             $error['signature'] = 'Contract number cannot be empty';
@@ -44,11 +44,14 @@ function contractForm()
             }
             $upload = $contract->save_to_db();
             if ($upload == ContractClass::SAVE_OK) {
-                $success = 'Contract added to database';
+                $success = 'Contract info added to database';
                 $contract = new ContractClass();
                 if (count($_FILES)){
                     $status = upload_file($_FILES['upload'],'application/pdf');
                 }
+                    else {
+                    $error['fileName'] = 'Contract info added to database, but file is not uploded. PDF file type required';
+                    }
             } else if ($upload == ContractClass::SAVE_ERROR_DUPLICATE_SIGNATURE) {
                 $error['signature'] = 'Cant add contract. Contract number already exist, if u want change parameters of the contract, move to update section';
             } else {
@@ -67,18 +70,19 @@ function contractForm()
     $output .= '</br>';
     $output .= 'Company : <input name="companyName" value="' . @$contract->companyName . '"/><br><div style="color:#f00;">' . @$error['companyName'] . '</div>';
     $output .= '</br>';
-    $output .= 'File name: <input name="name" value=""/>';
+    $output .= 'File name: <input name="fileName" value="'. @$contract->fileName . '"/><br><div style="color:#f00;">' . @$error['fileName'] . '</div>';;
     $output .= '</br></br>';
     $output .= 'PDF file: <input type="file" name="upload" value=""/>';
     $output .= '</br>';
     $output .= (@$contract->id ?
         (
-            '<button id="btn_send">' . 'Save changes on existing contract' . '</button>' .
+            '<button id="btn_send" name="save_changes">' . 'Save changes on existing contract' . '</button>' .
             '<button id="btn_send" name="create_new_record">' . 'Create new contract details' . '</button>'
         ) :
         '<button id="btn_send">' . 'Add contract details' . '</button>');
     $output .= '</form>';
     $output .= '</br></br>';
+
 
 
     return $output;

@@ -12,7 +12,7 @@ class ContractClass
     public $companyName;
     public $signature;
     public $fileName;
-    const MAX_LENGHT = 200;
+    const MAX_LENGHT = 400;
     const SAVE_OK = 1;
     const SAVE_ERROR_DB = -1;
     const SAVE_ERROR_DUPLICATE_SIGNATURE = -3;
@@ -27,6 +27,8 @@ class ContractClass
                 $this->id = $result['id'];
                 $this->companyName = $result['companyName'];
                 $this->signature = $result['Signature'];
+                $this->fileName = $result['fileName'];
+
             }
             else {
                 throw new Exception('There isnt contract id='.$id);
@@ -54,6 +56,12 @@ class ContractClass
                 else
                     $this->signature = htmlspecialchars($param_value);
                 break;
+            case 'fileName':
+                if (!$param_value || strlen($param_value)>self::MAX_LENGHT)
+                    $this->fileName = null;
+                else
+                    $this->fileName = htmlspecialchars($param_value);
+                break;
         }
     }
 //    pobieranie danych po parametrze
@@ -66,13 +74,16 @@ class ContractClass
         if ($this->id) {
             $stmt = $this->pdo->prepare("UPDATE contract SET
                 companyName=:companyName,
-                Signature=:Signature
+                Signature=:Signature,
+                fileName=:fileName
                 WHERE id=:identity
                 ");
             $input_parameters = array(
                 ':identity' => $this->id,
                 ':companyName' => $this->companyName,
                 ':sygnatura' => $this->signature,
+                ':fileName' => $this->fileName,
+
             );
             $upload = $stmt->execute(
                 $input_parameters
@@ -83,11 +94,13 @@ class ContractClass
             $stmt = $this->pdo->query("SELECT * FROM contract WHERE Signature='" . $this->signature . "'");
             if ($stmt->rowCount() > 0)
                 return self::SAVE_ERROR_DUPLICATE_SIGNATURE;
-            $stmt = $this->pdo->prepare("INSERT INTO contract VALUES (NULL, :companyName, :signature,NULL, NULL )");
+            $stmt = $this->pdo->prepare("INSERT INTO contract VALUES (NULL, :companyName, :signature,:fileName, NULL )");
             $upload = $stmt->execute(
                 array(
                     ':signature' => $this->signature,
-                    ':companyName' => $this->companyName
+                    ':companyName' => $this->companyName,
+                    ':fileName' => $this->fileName
+
                 )
             );
         }
