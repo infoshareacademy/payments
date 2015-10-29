@@ -46,12 +46,16 @@ function contractForm()
             if ($upload == ContractClass::SAVE_OK) {
                 $success = 'Contract info added to database';
                 $contract = new ContractClass();
-                if (count($_FILES)){
-                    $status = upload_file($_FILES['upload'],'application/pdf');
-                }
-                    else {
-                    $error['fileName'] = 'Contract info added to database, but file is not uploded. PDF file type required';
+                if (count($_FILES)) {
+                    $status = upload_file($_FILES['upload'], 'application/pdf');
+                    if ($status == '1') {
+                        $error['fileName'] = 'Contract info added to database, but file is not uploded. PDF file type required';
+                    } else {
+                        $success = 'Contract info and file added to database';
+
                     }
+                }
+
             } else if ($upload == ContractClass::SAVE_ERROR_DUPLICATE_SIGNATURE) {
                 $error['signature'] = 'Cant add contract. Contract number already exist, if u want change parameters of the contract, move to update section';
             } else {

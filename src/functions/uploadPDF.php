@@ -15,13 +15,13 @@ function upload_file($file_field, $force_type='application/pdf') {
     $mime = mime_content_type(CONTRACT_FILES . $server_filename);
     if ($force_type && $force_type!=$mime) {
         unlink(CONTRACT_FILES . $server_filename);
-        return 'BLEDNY TYP PLIKU, WYMAGAMY PDF';
+        return '1';
     }
 
     if ($status)
-        return 'OK';
+        return '2';
     else
-        return 'BLAD';
+        return '3';
 }
 
 
