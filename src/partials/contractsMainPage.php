@@ -26,7 +26,7 @@ function contractsMainPage()
     $output .= '<th>Contract number.</th>';
     $output .= '<th>Edit company details</th>';
     $output .= '<th>Delete contract record</th>';
-
+    $output .= '<th>View contract file</th>';
     $output .= '</tr>';
 //Zdefiniowana w ContractClass funkcja statyczna obiektu - wy�wietla tablice z selecta all z contract
     $ContractsMainPage = ContractClass::ContractTable();
@@ -38,6 +38,8 @@ function contractsMainPage()
         $output .= '<td>' . $item['Signature'] . '</td>';
         $output .= '<td><a href="?edit=' . $item['id'] . '">edit</a></td>';
         $output .= '<td><form method="get"><button name="delete" type="submit" value="' . $item['id'] . '">delete<div style="color:#f00;"></div></td>';
+        $output .= '<td><form method="get"><button name="view_file" type="submit" value="' . $item['id'] . '">view file<div style="color:#f00;"></div></td>';
+
 
         $output .= '</tr>';
     }
