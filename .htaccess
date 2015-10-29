@@ -1,4 +1,3 @@
-
 #this code rewrites url address from e.g. "index" to "index.php" so user doesn`t have to specify extension
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -9,9 +8,3 @@ RedirectMatch 404 /lib/
 RedirectMatch 404 /src/
 RedirectMatch 404 /.gitignore
 RedirectMatch 404 /README.md
-
-
-
-
-
-
