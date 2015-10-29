@@ -1,28 +1,22 @@
 
 <?php
 
-function renderSelectInput($selectedItemId) {
-    $output = '';
-
-    $output .= 'Umowa: <select name="signature_id">';
+function selectData($selectedItemId) {
 
     $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
     $stmt = $pdo->query('SELECT id, companyName FROM contract');
     $contracts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $selected_contract = $selectedItemId;
+
+    $data = [];
     foreach ($contracts as $one_contract) {
-        $output .= '<option value="' . $one_contract['id'] . '" ';
-        if (
-            isset($selected_contract) &&
-            $selected_contract == $one_contract['id']
-        ) {
-            $output .= 'selected';
-        }
-        $output .= '>' . $one_contract['companyName'] . '</option>';
+        $data[$one_contract['id']] = [
+            'value' => $one_contract['id'],
+            'label' => $one_contract['companyName'],
+            'isSelected' => (isset($selected_contract) && $selected_contract == $one_contract['id'])
+        ];
     }
 
-    $output .= '</select><br>';
-
-    return $output;
+    return $data;
 }
