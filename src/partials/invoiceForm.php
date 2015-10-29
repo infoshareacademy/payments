@@ -27,19 +27,19 @@ function invoiceForm()
 
         $invoice->signature = @$_POST['signature'];
         if (!$invoice->signature) // if null
-            $error['signature'] = 'Podaj nazwę faktury';
+            $error['signature'] = 'Put invoice number';
 
         $invoice->amount = @$_POST['amount'];
         if (!$invoice->amount)
-            $error['amount'] = 'Podaj kwotę z faktury';
+            $error['amount'] = 'Put invoice amount';
 
         $invoice->issue_date = @$_POST['issue_date'];
         if (!$invoice->issue_date)
-            $error['issue_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
+            $error['issue_date'] = 'Use the calendar or put correct date';
 
         $invoice->maturity_date = @$_POST['maturity_date'];
         if (!$invoice->maturity_date)
-            $error['maturity_date'] = 'Podaj poprawną datę lub skorzystaj z kalendarza';
+            $error['maturity_date'] = 'Use the calendar or put correct date';
 
         $invoice->payment_date = @$_POST['payment_date'];
 
@@ -51,12 +51,12 @@ function invoiceForm()
 
             $upload = $invoice->save_to_db();
             if ($upload == InvoiceClass::SAVE_OK) {
-                $success = 'Brawo! Pomyślnie zapisano do bazy';
+                $success = 'Great! Invoice saved';
                 $invoice = new InvoiceClass();
             } else if ($upload == InvoiceClass::SAVE_ERROR_DUPLICATE_SIG) {
-                $error['signature'] = 'Faktura o tym numerze już istnieje.';
+                $error['signature'] = 'Invoice number already exist';
             } else {
-                $error['general'] = 'Błąd zapisu do bazy danych.';
+                $error['general'] = 'Ups! Something wrong';
             }
         }
 
@@ -110,8 +110,9 @@ function invoiceForm()
                 <div class="col-sm-4">
                     <input class="form-control" name="signature" placeholder="Put invoice number"
                            value="<?= @$invoice->signature ?>"/>
-                </div>
+
                 <div style="color:#f00;"><?= @$error['signature'] ?></div>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="amount">Amount:</label>
@@ -120,14 +121,17 @@ function invoiceForm()
 
                     <input name="amount" class="form-control" placeholder="Put invoice amount"
                            value="<?= @$invoice->amount ?>"/>
-                </div>
+
                 <div style="color:#f00;"><?= @$error['amount'] ?></div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="IssueDate">Issue date:</label>
+
                 <div class="col-sm-4">
                     <input name="issue_date" class="form-control" type="date" value="<?= @$invoice->issue_date ?>"/>
+
                     <div style="color:#f00;"><?= @$error['issue_date'] ?></div>
                 </div>
             </div>
@@ -135,30 +139,27 @@ function invoiceForm()
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="MaturityDate">Maturity date:</label>
                 <div class="col-sm-4">
-
-          <input name="maturity_date" class="form-control" type="date" value="<?= @$invoice->maturity_date ?>"/>
-
-            <div style="color:#f00;"><?= @$error['maturity_date'] ?></div>
-
-                    </div>
+                    <input name="maturity_date" class="form-control" type="date" value="<?= @$invoice->maturity_date ?>"/>
+                    <div style="color:#f00;"><?= @$error['maturity_date'] ?></div>
                 </div>
+            </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="PaymentDate">Payment date:</label>
                 <div class="col-sm-4">
-            <input name="payment_date" class="form-control" type="date" value="<?= @$invoice->payment_date ?>"/>
-            </div>
+                    <input name="payment_date" class="form-control" type="date" value="<?= @$invoice->payment_date ?>"/>
                 </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-            <?= (@$invoice->id ?
-                (
-                '<button class="btn btn-primary" id="btn_send">SAVE EDIT</button>
-                <button id="btn_send" class="btn btn-success" name="create_new_record">SAVE AS NEW</button>'
-                ) :
-                '<button type="button" id="btn_send" class="btn btn-success">ADD NEW</but>'); ?>
-                    </div>
+                    <?= (@$invoice->id ?
+                        (
+                        '<button class="btn btn-primary" id="btn_send">SAVE EDIT</button>
+                        <button id="btn_send" class="btn btn-success" name="create_new_record">SAVE AS NEW</button>'
+                        ) :
+                        '<button id="btn_send" class="btn btn-success">ADD NEW</but>'); ?>
                 </div>
+            </div>
         </fieldset>
     </form>
 
