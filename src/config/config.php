@@ -2,7 +2,7 @@
 /**
  * Dane bazy danych developerskiej
  */
-const DB_HOST = 'test.payments.infoshareaca.nazwa.pl';
+const DB_HOST = 'a.pl';
 const DB_NAME = 'infoshareaca_7';
 const DB_USER = 'infoshareaca_7';
-const DB_PASS = 'F0r3v3r!';
+const DB_PASS = '!';
