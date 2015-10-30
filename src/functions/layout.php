@@ -36,7 +36,7 @@ return <<<EOT
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Payments</a>
+            <a class="navbar-brand" href="#">Pied Pieper Payments</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -55,10 +55,10 @@ return <<<EOT
 
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
                 <li><a href="index_reports.php">Raporty</a></li>
                 <li><a href="index_contracts.php">Umowy</a></li>
-                <li><a href="index.php">Faktury</a></li>
+                <li><a href="index_invoices.php">Faktury</a></li>
                 <li><a href="invoice_import.php">Import faktury z QR kodu</a></li>
             </ul>
         </div>

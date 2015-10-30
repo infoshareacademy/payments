@@ -15,6 +15,7 @@ function invoiceCalendar()
     $startTime = strtotime('today');
     $endTime = $startTime + 30 * 86400;
 
+    echo '<h1>Invoices for next 30 days</h1>';
     echo '<table class="table table-hover">';
     echo '<tr>';
     echo '<th>Date</th>';
