@@ -7,3 +7,9 @@ echo layout('', invoiceForm() . invoiceList());
 
  ?>
 
+<script>
+    $(document).ready(function () {
+        $(".active li").removeClass("active");
+        $('#invoices').addClass('active');
+    });
+</script>

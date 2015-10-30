@@ -1,10 +1,11 @@
 <?php
+require __DIR__ . '/../Model/PDOobjectCreateClass.php';
 
 // łaczenie i pobieranie z bazy bez tworzenia obiektu - w razie co, dodać obiekt
 function invoiceCalendar()
 {
 
-    $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+    $pdo = DBHandler::getPDO();
 
 //Kalendarz faktur
     $futureInvoices = $pdo->query('SELECT * FROM payment_report WHERE Payment_date IS NULL AND Maturity_date > CURDATE() AND Maturity_date < date_add(CURDATE(), INTERVAL 30 DAY) ORDER BY Maturity_date ASC ;');
