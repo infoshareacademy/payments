@@ -56,10 +56,10 @@ return <<<EOT
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="index_reports.php">Raporty</a></li>
-                <li><a href="index_contracts.php">Umowy</a></li>
-                <li><a href="index_invoices.php">Faktury</a></li>
-                <li><a href="invoice_import.php">Import faktury z QR kodu</a></li>
+                <li><a href="index_reports.php">Reports</a></li>
+                <li><a href="index_contracts.php">Contracts</a></li>
+                <li><a href="index_invoices.php">Invoices</a></li>
+                <li><a href="invoice_import.php">Import from QR code</a></li>
             </ul>
         </div>
     </div>
