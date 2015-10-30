@@ -55,10 +55,11 @@ return <<<EOT
 
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="index_reports">Raporty</a></li>
-                <li><a href="index_contracts">Umowy</a></li>
-                <li><a href="index">Faktury</a></li>
-                <li><a href="invoice_import">Import faktury z QR kodu</a></li>
+                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="index_reports.php">Raporty</a></li>
+                <li><a href="index_contracts.php">Umowy</a></li>
+                <li><a href="index.php">Faktury</a></li>
+                <li><a href="invoice_import.php">Import faktury z QR kodu</a></li>
             </ul>
         </div>
     </div>
