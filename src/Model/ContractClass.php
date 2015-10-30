@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: tomek
- * Date: 2015-10-17
- * Time: 19:02
- */
+require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+
 class ContractClass
 {
     public $id;
@@ -18,9 +14,10 @@ class ContractClass
     private $pdo;
     public function __construct($id = null)
     {
-        $this->pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+        $this->pdo = DBHandler::getPDO();
         if ($id) {
-            $stmt = $this->pdo->query("select * from contract where id=".(int)$id);
+            $stmt = $this->pdo->prepare("select * from contract where id=:id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             if ($stmt->rowCount()>0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $this->id = $result['id'];
@@ -79,7 +76,9 @@ class ContractClass
         }
 //po��czenie z baz� i sprawdzenie czy ju� jest taka umowa
         else {
-            $stmt = $this->pdo->query("SELECT * FROM contract WHERE Signature='" . $this->signature . "'");
+            $stmt = $this->pdo->prepare("SELECT * FROM contract WHERE Signature=:signature");
+            $stmt->bindParam(':signature', $this->signature, PDO::PARAM_STR);
+
             if ($stmt->rowCount() > 0)
                 return self::SAVE_ERROR_DUPLICATE_SIGNATURE;
             $stmt = $this->pdo->prepare("INSERT INTO contract VALUES (NULL, :companyName, :signature,NULL, NULL )");
@@ -98,7 +97,7 @@ class ContractClass
     }
 // Pobieranielisty um�w do wy�wietlenia w tabeli generowanej w ContractsMainPage.php
     public static function ContractTable() {
-        $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+        $pdo = DBHandler::getPDO();
         $stmt = $pdo->query('SELECT * FROM contract');
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

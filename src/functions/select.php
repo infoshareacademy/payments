@@ -3,7 +3,7 @@
 
 function selectData($selectedItemId) {
 
-    $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+    $pdo = DBHandler::getPDO();
     $stmt = $pdo->query('SELECT id, companyName FROM contract');
     $contracts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
