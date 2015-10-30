@@ -1,19 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tomek
- * Date: 16.10.15
- * Time: 14:27
- */
+require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+
 
 function sqlReports()
 {
+
     $output = '';
 
     $output .= '<h1 class="page-header">Reports</h1>';
     $output .= '<h2>Pre-defined reports:</h2>';
 
-    $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+    $pdo = DBHandler::getPDO();
 //niezapłacone faktury
     $unpaidInvoices = $pdo->query('SELECT companyName, Signature, Amount, Maturity_date FROM payment_report WHERE Payment_date IS NULL ORDER BY Maturity_date ASC ;');
     $unpaidInvoices = $unpaidInvoices->fetchAll(PDO::FETCH_ASSOC);

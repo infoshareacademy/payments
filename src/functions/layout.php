@@ -36,16 +36,29 @@ return <<<EOT
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Payments</a>
+            <a class="navbar-brand" href="#">Pied Pieper Payments</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        <li class="dropdown hidden-sm hidden-md hidden-lg">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="index_reports.php">Reports</a></li>
+            <li><a href="index_contracts.php">Contracts</a></li>
+            <li><a href="index_invoices.php">Invoices</a></li>
+            <li><a href="invoice_import.php">Import from QR code</a></li>
+          </ul>
+        </li>
+      </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout">Wyloguj</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"
                                       aria-hidden="true"></span>&nbsp;{$_SESSION ['user_login']}</a></li>
             </ul>
         </div>
+
 
     </div>
 </nav>
@@ -54,11 +67,12 @@ return <<<EOT
     <div class="row">
 
         <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a href="index_reports">Raporty</a></li>
-                <li><a href="index_contracts">Umowy</a></li>
-                <li><a href="index">Faktury</a></li>
-                <li><a href="invoice_import">Import faktury z QR kodu</a></li>
+            <ul class="nav nav-sidebar active">
+                <li id="overview"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
+                <li id="reports"><a href="index_reports.php">Reports</a></li>
+                <li id="contracts"><a href="index_contracts.php">Contracts</a></li>
+                <li id="invoices"><a href="index_invoices.php">Invoices</a></li>
+                <li id="import"><a href="invoice_import.php">Import from QR code</a></li>
             </ul>
         </div>
     </div>
