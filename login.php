@@ -18,7 +18,7 @@ if (!@$_SESSION['user_login'] || !@$_SESSION['user_pass']) {
 }
 else {
     if ($_SESSION['user_login'] == ADMIN_LOGIN && $_SESSION['user_pass']== ADMIN_PASS) {
-        header ("location: index.php");
+        header ("location: index");
         $error = '';
     }
     else {
