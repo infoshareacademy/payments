@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+require_once __DIR__ . '/../Model/PDOobjectCreateClass.php';
 
 class ContractClass
 {
