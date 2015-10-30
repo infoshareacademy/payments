@@ -1,16 +1,11 @@
 <?php
+include_once __DIR__. '/../config/config.php';
+
 class DBHandlerException extends PDOException {
 }
 
 class DBHandler {
 
-    /**
-     * Dane bazy danych
-     */
-    const DB_HOST = 'test.payments.infoshareaca.nazwa.pl';
-    const DB_NAME = 'infoshareaca_7';
-    const DB_USER = 'infoshareaca_7';
-    const DB_PASS = 'F0r3v3r!';
 
     /**
      * Sterownik bazy danych
@@ -52,9 +47,9 @@ class DBHandler {
         if (!extension_loaded('PDO')) throw new DBHandlerException('Brak modulu PDO');
         try {
             $pdo = new PDO(
-                self::DB_DRIVER . ':host=' . self::DB_HOST . ';dbname=' . self::DB_NAME,
-                self::DB_USER,
-                self::DB_PASS,
+                self::DB_DRIVER . ':host=' . DB_HOST . ';dbname=' . DB_NAME,
+                DB_USER,
+                DB_PASS,
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
