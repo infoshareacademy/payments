@@ -6,7 +6,7 @@ function layout($name, $content) {
 session_start();
 
 if (!@$_SESSION['user_login'] || !@$_SESSION['user_pass']) {
-    header("location: login.php");
+    header("location: login");
 }
 
 
@@ -36,12 +36,12 @@ return <<<EOT
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Payments</a>
+            <a class="navbar-brand" href="#">Pied Pieper Payments</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="logout.php">Wyloguj</a></li>
+                <li><a href="logout">Wyloguj</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"
                                       aria-hidden="true"></span>&nbsp;{$_SESSION ['user_login']}</a></li>
             </ul>
@@ -55,11 +55,11 @@ return <<<EOT
 
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="index_reports.php">Raporty</a></li>
-                <li><a href="index_contracts.php">Umowy</a></li>
-                <li><a href="index.php">Faktury</a></li>
-                <li><a href="invoice_import.php">Import faktury z QR kodu</a></li>
+                <li class="active"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="index_reports.php">Reports</a></li>
+                <li><a href="index_contracts.php">Contracts</a></li>
+                <li><a href="index_invoices.php">Invoices</a></li>
+                <li><a href="invoice_import.php">Import from QR code</a></li>
             </ul>
         </div>
     </div>
