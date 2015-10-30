@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../Model/PDOobjectCreateClass.php';
+require_once __DIR__ . '/../Model/PDOobjectCreateClass.php';
 
 // łaczenie i pobieranie z bazy bez tworzenia obiektu - w razie co, dodać obiekt
 function invoiceCalendar()
