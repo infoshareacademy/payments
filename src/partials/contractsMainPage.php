@@ -37,10 +37,8 @@ function contractsMainPage()
         $output .= '<td>' . $item['companyName'] . '</td>';
         $output .= '<td>' . $item['Signature'] . '</td>';
         $output .= '<td><a href="?edit=' . $item['id'] . '">edit</a></td>';
-        $output .= '<td><form method="get"><button name="delete" type="submit" value="' . $item['id'] . '">delete<div style="color:#f00;"></div></td>';
-        $output .= '<td><form method="get"><button name="view_file" type="submit" value="' . $item['id'] . '">view file<div style="color:#f00;"></div></td>';
-
-
+        $output .= '<td><form method="get"><button name="delete" type="submit" value="' . $item['id'] . '">delete</button><div style="color:#f00;"></div></form></td>';
+        $output .= '<td><form action="uploadedFiles/'. $item['fileName'] . '" method="get"><button type="submit">view file</button><div style="color:#f00;"></div></form></td>';
         $output .= '</tr>';
     }
     $output .= '</table>';

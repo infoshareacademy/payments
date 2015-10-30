@@ -30,7 +30,7 @@ function contractForm()
     if (isset($_GET['view_file']) and is_numeric($_GET['view_file'])) {
         $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
         $stmt = $pdo->query("Select fileName FROM contract WHERE id =" . $_GET['view_file']);
-        $delete = $pdo->exec(@$stmt);
+        $report = $pdo->exec(@$stmt);
         $output .= '<br><div style="color:#f00;">Widzisz teraz plik</div><br/>';
     }
 
@@ -39,7 +39,8 @@ function contractForm()
         $contract = new ContractClass();
         $contract->signature = @$_POST['signature'];
         $contract->companyName = @$_POST['companyName'];
-        $contract-> fileName = @$_POST ['fileName'];
+        $hash = uniqid(@$_POST['fileName'] . '-' . rand(0, 99999));
+        $contract-> fileName = $hash . @$_POST['fileName'] . '.pdf';
 
         if (!$contract->signature) // if null
             $error['signature'] = 'Contract number cannot be empty';
@@ -52,9 +53,8 @@ function contractForm()
             $upload = $contract->save_to_db();
             if ($upload == ContractClass::SAVE_OK) {
                 $success = 'Contract info added to database';
-                $contract = new ContractClass();
                 if (count($_FILES)) {
-                    $status = upload_file($_FILES['upload'], 'application/pdf');
+                    $status = upload_file($contract->fileName, $_FILES['upload'], 'application/pdf');
                     if ($status == '1') {
                         $error['fileName'] = 'Contract info added to database, but file is not uploded. PDF file type required';
                     } else {
@@ -62,6 +62,7 @@ function contractForm()
 
                     }
                 }
+                $contract = new ContractClass();
 
             } else if ($upload == ContractClass::SAVE_ERROR_DUPLICATE_SIGNATURE) {
                 $error['signature'] = 'Cant add contract. Contract number already exist, if u want change parameters of the contract, move to update section';
