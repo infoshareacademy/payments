@@ -44,11 +44,11 @@ return <<<EOT
         <li class="dropdown hidden-sm hidden-md hidden-lg">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="index_reports.php">Reports</a></li>
-            <li><a href="index_contracts.php">Contracts</a></li>
-            <li><a href="index_invoices.php">Invoices</a></li>
-            <li><a href="invoice_import.php">Import from QR code</a></li>
+            <li class="active"><a href="index">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="index_reports">Reports</a></li>
+            <li><a href="index_contracts">Contracts</a></li>
+            <li><a href="index_invoices">Invoices</a></li>
+            <li><a href="invoice_import">Import from QR code</a></li>
           </ul>
         </li>
       </ul>
@@ -68,11 +68,11 @@ return <<<EOT
 
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar active">
-                <li id="overview"><a href="index.php">Overview <span class="sr-only">(current)</span></a></li>
-                <li id="reports"><a href="index_reports.php">Reports</a></li>
-                <li id="contracts"><a href="index_contracts.php">Contracts</a></li>
-                <li id="invoices"><a href="index_invoices.php">Invoices</a></li>
-                <li id="import"><a href="invoice_import.php">Import from QR code</a></li>
+                <li id="overview"><a href="index">Overview <span class="sr-only">(current)</span></a></li>
+                <li id="reports"><a href="index_reports">Reports</a></li>
+                <li id="contracts"><a href="index_contracts">Contracts</a></li>
+                <li id="invoices"><a href="index_invoices">Invoices</a></li>
+                <li id="import"><a href="invoice_import">Import from QR code</a></li>
             </ul>
         </div>
     </div>
