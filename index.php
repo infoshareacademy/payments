@@ -7,6 +7,11 @@ ob_start();
 invoiceCalendar();
 $calendar = ob_get_clean();
 echo layout('', invoiceForm() . $calendar);
-
-
+?>
+<script>
+$(document).ready(function () {
+    $(".active li").removeClass("active");
+    $('#overview').addClass('active');
+});
+</script>
 
