@@ -22,7 +22,8 @@ function contractForm()
     error_reporting(0);
     if (isset($_GET['delete']) and is_numeric($_GET['delete'])) {
         $pdo = DBHandler::getPDO();
-        $stmt = $pdo->query("DELETE FROM contract WHERE id =" . $_GET['delete']);
+        $stmt = $pdo->prepare("DELETE FROM contract WHERE id =:id");
+        $stmt->bindParam(':id', $_GET['delete'], PDO::PARAM_STR);
         $delete = $pdo->exec(@$stmt);
         $output .= '<br><div style="color:#f00;">Contract deleted successfully</div><br/>';
     }

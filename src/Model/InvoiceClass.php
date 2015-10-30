@@ -27,7 +27,8 @@ class InvoiceClass
         $this->pdo = DBHandler::getPDO();
 
         if ($id) {
-            $stmt = $this->pdo->query("SELECT * FROM invoices WHERE id=" . (int)$id);
+            $stmt = $this->pdo->prepare("SELECT * FROM invoices WHERE id=:id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             if ($stmt->rowCount() > 0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $this->id = $result['id'];
@@ -137,7 +138,9 @@ class InvoiceClass
             );
         } // połączenie z bazą i sprawdzenie czy numer faktury nie dubluje się
         else {
-            $stmt = $this->pdo->query("SELECT * FROM invoices WHERE Signature='" . $this->signature . "'");
+            $stmt = $this->pdo->prepare("SELECT * FROM invoices WHERE Signature=:signature");
+            $stmt->bindParam(':signature', $this->signature, PDO::PARAM_STR);
+
             if ($stmt->rowCount() > 0)
                 return self::SAVE_ERROR_DUPLICATE_SIG;
 
@@ -169,7 +172,7 @@ class InvoiceClass
 
     public static function invoiceTable()
     {
-        $pdo = new PDO('mysql:dbname=infoshareaca_7;host=test.payments.infoshareaca.nazwa.pl', 'infoshareaca_7', 'F0r3v3r!');
+        $pdo = DBHandler::getPDO();
         $stmt = $pdo->query('SELECT * FROM invoices');
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
