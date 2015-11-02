@@ -12,11 +12,11 @@ function invoiceList()
     $output .= '<table class="table table-hover">';
     $output .= '<tr>';
     $output .= '<th>ID</th>';
-    $output .= '<th>Nazwa faktury</th>';
-    $output .= '<th>Kwota</th>';
-    $output .= '<th>Data wystawienia</th>';
-    $output .= '<th>Data płatności</th>';
-    $output .= '<th>Data opłacenia</th>';
+    $output .= '<th>Invoice number</th>';
+    $output .= '<th>Amount</th>';
+    $output .= '<th>Issue date</th>';
+    $output .= '<th>Maturity date</th>';
+    $output .= '<th>Payment date</th>';
     $output .= '</tr>';
 
     $invoiceList = InvoiceClass::invoiceTable();
@@ -30,7 +30,7 @@ function invoiceList()
         $output .= '<td>' . $record['Issue_date'] . '</td>';
         $output .= '<td>' . $record['Maturity_date'] . '</td>';
         $output .= '<td>' . $record['Payment_date'] . '</td>';
-        $output .= '<td><a href="?edit=' . $record['id'] . '">edytuj</a></td>';
+        $output .= '<td><a href="?edit=' . $record['id'] . '">EDIT</a></td>';
         $output .= '</tr>';
     }
     $output .= '</table>';
