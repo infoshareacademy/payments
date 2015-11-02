@@ -16,7 +16,8 @@ function sqlReports()
     $unpaidInvoices = $unpaidInvoices->fetchAll(PDO::FETCH_ASSOC);
 //print_r($unpaidInvoices);
     $output .= '<h2>Report: Unpaid invoices:</h2>';
-    $output .= '<table class="table table-hover">';
+    $output .= '<div class="table-responsive">';
+    $output .= '<table class="table table-striped">';
     $output .= '<tr>';
     $output .= '<th>Company name</th>';
     $output .= '<th>Signature</th>';
@@ -31,13 +32,15 @@ function sqlReports()
         $output .= '</tr>';
     }
     $output .= '</table>';
+    $output .= '</div>';
+
     $output .= '<br/><br/>';
 //Suma w podziale na firmy
     $SumForCompany = $pdo->query('SELECT companyName, sum(Amount) FROM payment_report GROUP BY companyName ORDER BY sum(Amount) DESC ;');
     $SumForCompany = $SumForCompany->fetchAll(PDO::FETCH_ASSOC);
 //print_r($SumForCompany);
     $output .= '<h2>Report: Sum for companies</h2>';
-    $output .= '<table class="table table-hover">';
+    $output .= '<table class="table table-striped">';
     $output .= '<tr>';
     $output .= '<th>Company name</th>';
     $output .= '<th>Sum</th>';

@@ -121,7 +121,8 @@ function contractForm()
                 <label class="col-sm-2 control-label" for="fileName">File name:</label>
 
                 <div class="col-sm-4">
-                    <input name="fileName" class="form-control" value="<?= @$contract->fileName ?>"/>
+                    <input name="fileName" class="form-control" placeholder="type file name here"
+                           value="<?= @$contract->fileName ?>"/>
 
                     <div style="color:#f00;"><?= @$error['fileName'] ?></div>
                 </div>
