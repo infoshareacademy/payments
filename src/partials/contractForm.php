@@ -11,7 +11,7 @@ require_once __DIR__ . '/../functions/uploadPDF.php';
 
 function contractForm()
 {
-   $output = '';
+    $output = '';
 
 
     if (@$_GET['edit'] && (int)$_GET['edit']) {
@@ -72,31 +72,88 @@ function contractForm()
             }
         }
     }
-    $output .= '<h2>Add/modify contract details</h2>';
-
-    if (@$success)
-        $output .= '<div style="color:#22aa22; font-weight:bold;">' . $success . '</div><br/>';
-    if (@$error['general'])
-        $output .= '<div style="color:#f00; font-weight:bold;">' . $error['general'] . '</div><br/>';
-    $output .= '<form action="?" method="post" enctype="multipart/form-data">';
-    $output .= 'Signature : <input name="signature" value="' . @$contract->signature . '"/><br><div style="color:#f00;">' . @$error['signature'] . '</div>';
-    $output .= '</br>';
-    $output .= 'Company : <input name="companyName" value="' . @$contract->companyName . '"/><br><div style="color:#f00;">' . @$error['companyName'] . '</div>';
-    $output .= '</br>';
-    $output .= 'File name: <input name="fileName" value="'. @$contract->fileName . '"/><br><div style="color:#f00;">' . @$error['fileName'] . '</div>';;
-    $output .= '</br></br>';
-    $output .= 'PDF file: <input type="file" name="upload" value=""/>';
-    $output .= '</br>';
-    $output .= (@$contract->id ?
-        (
-            '<button id="btn_send" name="save_changes">' . 'Save changes on existing contract' . '</button>' .
-            '<button id="btn_send" name="create_new_record">' . 'Create new contract details' . '</button>'
-        ) :
-        '<button id="btn_send">' . 'Add contract details' . '</button>');
-    $output .= '</form>';
-    $output .= '</br></br>';
+    $output = '';
+    ob_start(); ?>
 
 
+
+
+    <?php if (@$success) { ?>
+    <div style="color:#22aa22; font-weight:bold;"><?= $success ?></div><br/>
+<?php } ?>
+
+    <?php if (@$error['general']) { ?>
+    <div style="color:#f00; font-weight:bold;"><?= $error['general'] ?></div><br/>
+<?php } ?>
+
+
+    <form action="?" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add/modify contract details</legend>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="signature">Contract signature:</label>
+
+                <div class="col-sm-4">
+                    <input class="form-control" name="signature" placeholder="contract signature here"
+                           value="<?= @$contract->signature ?>"/>
+
+                    <div style="color:#f00;"><?= @$error['signature'] ?></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="companyName">Company name:</label>
+
+                <div class="col-sm-4">
+
+                    <input name="companyName" class="form-control" placeholder="company name here"
+                           value="<?= @$contract->companyName ?>"/>
+
+                    <div style="color:#f00;"><?= @$error['companyName'] ?></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="fileName">File name:</label>
+
+                <div class="col-sm-4">
+                    <input name="fileName" class="form-control" value="<?= @$contract->fileName ?>"/>
+
+                    <div style="color:#f00;"><?= @$error['fileName'] ?></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="upload">File upload:</label>
+                <div class="col-sm-4">
+                    <div style="height:0;overflow:hidden">
+                    <input type="file" id="fileInput" name="upload" value=""/>
+                    </div>
+                    <button type="button" id="btn_send" class="btn btn-success" onclick="chooseFile();">Choose file</button>
+                </div>
+            </div>
+                <script>
+                    function chooseFile() {
+                        $("#fileInput").click();
+                    }
+                </script>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <?= (@$contract->id ?
+                        (
+                        '<button class="btn btn-primary" id="btn_send">Save changes on existing contract</button>
+                        <button id="btn_send" class="btn btn-success" name="create_new_record">Create new contract details</button>'
+                        ) :
+                        '<button id="btn_send" class="btn btn-success">Add new contract details</button>'); ?>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <?php
+    $output .= ob_get_clean();
 
     return $output;
+
 }

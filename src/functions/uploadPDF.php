@@ -5,17 +5,6 @@ define('CONTRACT_FILES', __DIR__.'/../../uploadedFiles/');
 
 function upload_file($server_filename, $file_field, $force_type='application/pdf') {
     $user_filename = $file_field['fileName'];
-//    $extension = substr($user_filename, strrpos($user_filename, '.')+1, 5);
-//    echo $extension;
-//    do {
-//        $hash = uniqid(@$_POST['fileName'] . '-' . rand(0, 99999));
-//        $server_filename = '.' . $extension;
-//    } while (file_exists(CONTRACT_FILES . $server_filename));
-//
-//    var_dump($file_field);
-//    var_dump(CONTRACT_FILES . $server_filename);
-//    exit;
-
     $status = move_uploaded_file($file_field['tmp_name'], CONTRACT_FILES . $server_filename);
     $mime = mime_content_type(CONTRACT_FILES . $server_filename);
     if ($force_type && $force_type!=$mime) {
@@ -29,21 +18,3 @@ function upload_file($server_filename, $file_field, $force_type='application/pdf
         return '3';
 }
 
-
-//
-//
-//if (count($_FILES)) {
-//    echo '<pre>';
-////    print_r($_FILES);
-//
-//    $status = upload_file($_FILES['upload'], 'application/pdf');
-////    var_dump($status);
-//}
-//
-//?>
-<!---->
-<!--<form action="?" method="post" enctype="multipart/form-data">-->
-<!--    <input name="fileName" value="" /><br/>-->
-<!--    podaj pdf: <input type="file" name="upload" value=""/><br/>-->
-<!--    <input type="submit" name="send" value="send" />-->
-<!--</form>-->
