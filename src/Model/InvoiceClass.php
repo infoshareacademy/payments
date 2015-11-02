@@ -28,7 +28,8 @@ class InvoiceClass
 
         if ($id) {
             $stmt = $this->pdo->prepare("SELECT * FROM invoices WHERE id=:id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->bindParam(":id", $id, PDO::PARAM_STR);
+            $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $this->id = $result['id'];
@@ -140,6 +141,7 @@ class InvoiceClass
         else {
             $stmt = $this->pdo->prepare("SELECT * FROM invoices WHERE Signature=:signature");
             $stmt->bindParam(':signature', $this->signature, PDO::PARAM_STR);
+            $stmt->execute();
 
             if ($stmt->rowCount() > 0)
                 return self::SAVE_ERROR_DUPLICATE_SIG;

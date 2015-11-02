@@ -19,6 +19,7 @@ class ContractClass
         if ($id) {
             $stmt = $this->pdo->prepare("select * from contract where id=:id");
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
             if ($stmt->rowCount()>0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $this->id = $result['id'];
@@ -90,7 +91,7 @@ class ContractClass
         else {
             $stmt = $this->pdo->prepare("SELECT * FROM contract WHERE Signature=:signature");
             $stmt->bindParam(':signature', $this->signature, PDO::PARAM_STR);
-
+            $stmt->execute();
             if ($stmt->rowCount() > 0)
                 return self::SAVE_ERROR_DUPLICATE_SIGNATURE;
             $stmt = $this->pdo->prepare("INSERT INTO contract VALUES (NULL, :companyName, :signature,:fileName, NULL )");
