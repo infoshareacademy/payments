@@ -24,8 +24,12 @@ function contractForm()
         $pdo = DBHandler::getPDO();
         $stmt = $pdo->prepare("DELETE FROM contract WHERE id =:id");
         $stmt->bindParam(':id', $_GET['delete'], PDO::PARAM_STR);
-        $delete = $pdo->exec(@$stmt);
-        $output .= '<br><div style="color:#f00;">Contract deleted successfully</div><br/>';
+        $delete = $stmt->execute();
+        if(empty($delete) == true) {
+            $output .= '<br><div style="color:#f00;">Contract deleted successfully</div><br/>';
+        } else {
+            $output .='<br><div style="color:#f00;">I cant delete record</div><br/>';
+        }
     }
     $error = array();
     if (count($_POST)) {
